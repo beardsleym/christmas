@@ -1,10 +1,13 @@
 import Head from "next/head";
-import { Container, Text, VStack } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { Container, IconButton, VStack } from "@chakra-ui/react";
+import { SettingsIcon } from "@chakra-ui/icons";
 import { DayItem } from "../components/DayItem";
+import { Info } from "../components/Info";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Christmas Advent Calendar</title>
         <meta name="description" content="christmas advent calendar" />
@@ -15,10 +18,21 @@ export default function Home() {
           {Array(25)
             .fill("")
             .map((_, i) => (
-              <DayItem key={i} />
+              <DayItem key={i} id={"1"} />
             ))}
         </VStack>
       </Container>
-    </div>
+      <IconButton
+        as={NextLink}
+        href="/preferences"
+        aria-label="preferences"
+        icon={<SettingsIcon w={8} h={8} />}
+        position="fixed"
+        bottom="30"
+        left="30"
+        colorScheme="transparent"
+      />
+      <Info />
+    </>
   );
 }
