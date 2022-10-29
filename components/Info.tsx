@@ -39,20 +39,14 @@ export const Info = () => {
         <AlertDialogOverlay />
 
         <AlertDialogContent>
-          <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+          <AlertDialogHeader>How does it work</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
-            Are you sure you want to discard all of your notes? 44 words will be
-            deleted.
+            Click on the house that is todays current date, just in a real
+            advent calendar. Enjoy your mystery activity with family and
+            friends.
           </AlertDialogBody>
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              No
-            </Button>
-            <Button colorScheme="red" ml={3}>
-              Yes
-            </Button>
-          </AlertDialogFooter>
+          <AlertDialogFooter></AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </>
