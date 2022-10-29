@@ -1,7 +1,5 @@
-import { Image, Center, Heading, Box } from "@chakra-ui/react";
 import { useRef } from "react";
 import {
-  Button,
   IconButton,
   AlertDialog,
   AlertDialogOverlay,
@@ -16,7 +14,7 @@ import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
 export const Info = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
+  const cancelRef = useRef(null);
 
   return (
     <>
