@@ -10,7 +10,13 @@ export const PreferenceItem = ({ label }: PreferenceItemProps) => {
       <FormLabel htmlFor="email-alerts" mb="0">
         {label}
       </FormLabel>
-      <Switch id={`${label}`} colorScheme="primary" size="lg" ml="auto" />
+      <Switch
+        id={`${label}`}
+        colorScheme="primary"
+        size="lg"
+        ml="auto"
+        isChecked
+      />
     </FormControl>
   );
 };
