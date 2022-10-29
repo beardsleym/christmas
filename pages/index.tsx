@@ -10,9 +10,7 @@ export default function Home() {
         <meta name="description" content="christmas advent calendar" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box bg="tomato" m={2}>
-        Christmas Time !
-      </Box>
+      <Box m={2}>Christmas Time !</Box>
     </div>
   );
 }
