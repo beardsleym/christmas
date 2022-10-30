@@ -15,7 +15,7 @@ export const PreferenceItem = ({ label }: PreferenceItemProps) => {
         colorScheme="primary"
         size="lg"
         ml="auto"
-        isChecked
+        defaultChecked
       />
     </FormControl>
   );
