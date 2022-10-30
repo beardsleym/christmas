@@ -14,6 +14,10 @@ export default function Home() {
     key: "categories",
     defaultValue: undefined,
   });
+  const [array, setArray] = useLocalStorage<Number[]>({
+    key: "daysArray",
+    defaultValue: undefined,
+  });
 
   useEffect(() => {
     if (typeof value === "object" && value.length === 0)
@@ -27,9 +31,8 @@ export default function Home() {
       <Header />
       <Container h="2xl" maxW="4xl">
         <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
-          {Array.from({ length: 31 }, (_, i) => i + 1)
-            .sort(() => Math.random() - 0.5)
-            .map((value, i) => (
+          {array &&
+            array.map((value, i) => (
               <DayItem key={i} id={value} disabled={value !== currentDay} />
             ))}
         </SimpleGrid>
