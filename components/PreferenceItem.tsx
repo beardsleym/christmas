@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
 import { useLocalStorage } from "@mantine/hooks";
-import { categories } from "../constants/data";
 
 type PreferenceItemProps = {
   label: string;
