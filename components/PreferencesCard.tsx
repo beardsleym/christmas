@@ -5,7 +5,7 @@ import { categories } from "../constants/data";
 export const PreferencesCard = () => {
   return (
     <Center bg="white" boxShadow="base" rounded={"md"}>
-      <Stack spacing={2} py={8} px={16}>
+      <Stack spacing={2} py={8}>
         {categories.map((category) => (
           <PreferenceItem label={category} key={category} />
         ))}
