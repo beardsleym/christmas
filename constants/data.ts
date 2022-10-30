@@ -29,7 +29,6 @@ export const categories = [
   "Craft and create",
   "Serving others",
   "In the kitchen",
-  "Faith-based activities",
   "Decorating",
   "Outings",
   "Fun at home",
