@@ -1,4 +1,4 @@
-export const kitchen = [
+export const kitchen: string[] = [
   "Make Christmas cookies",
   "Serve a red and green themed meal",
   "Make homemade caramel corn",
@@ -12,7 +12,7 @@ export const kitchen = [
   "Melt chocolate into Christmas molds",
 ];
 
-export const outings = [
+export const outings: string[] = [
   "Cut or pick a Christmas tree",
   "Visit a few friends’ houses to sing Christmas carols and hand out candy canes",
   "Hop in the car in your jammies and drive around to look at the Christmas lights",
@@ -25,12 +25,12 @@ export const outings = [
   "Attend a holiday craft bazaar with grandma",
 ];
 
-export const categories = [
+export const categories: string[] = [
   "Craft and create",
   "Serving others",
-  "In the kitchen",
+  "kitchen",
   "Decorating",
-  "Outings",
+  "outings",
   "Fun at home",
   "Christmas movies",
   "Winter activities",
