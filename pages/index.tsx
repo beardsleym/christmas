@@ -12,11 +12,9 @@ export default function Home() {
       <Header />
       <Container h="2xl" maxW="4xl">
         <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
-          {Array(25)
-            .fill("")
-            .map((_, i) => (
-              <DayItem key={i} id={"1"} />
-            ))}
+          {Array.from({ length: 25 }, (_, i) => i + 1).map((value, i) => (
+            <DayItem key={i} id={value} />
+          ))}
         </SimpleGrid>
       </Container>
       <IconButton

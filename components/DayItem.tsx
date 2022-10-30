@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import { Image, Center, Heading, Box } from "@chakra-ui/react";
 
 type DayItemProps = {
-  id: String;
+  id: Number;
 };
 
 export const DayItem = ({ id }: DayItemProps) => {
@@ -18,7 +18,7 @@ export const DayItem = ({ id }: DayItemProps) => {
             left={"39%"}
             textAlign="center"
           >
-            1
+            {id.toString()}
           </Heading>
         </Center>
         <Image src="/images/House.svg" alt="house" />

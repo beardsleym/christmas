@@ -4,9 +4,20 @@ import { Main } from "../components/Main";
 import { Heading, Tag, Center, IconButton } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
+import { kitchen, outings } from "../constants/data";
+
 export default function ID() {
   const router = useRouter();
   const { id } = router.query;
+  let text;
+  let category;
+  if (Number(id) % 2 === 0) {
+    category = "KITCHEN";
+    text = kitchen[Math.floor(Math.random() * kitchen.length)];
+  } else {
+    category = "OUTINGS";
+    text = outings[Math.floor(Math.random() * outings.length)];
+  }
 
   return (
     <>
@@ -22,14 +33,13 @@ export default function ID() {
           left="30"
           colorScheme="transparent"
         />
-
         <Center>
           <Tag size={"lg"} variant="solid" backgroundColor="grey.600">
-            ACTIVITY
+            {category}
           </Tag>
         </Center>
-        <Heading as="h2" size={"4xl"} color="white" textAlign={"center"}>
-          Look at holiday lights
+        <Heading as="h2" size={"3xl"} color="white" textAlign={"center"}>
+          {text}
         </Heading>
       </Main>
     </>
