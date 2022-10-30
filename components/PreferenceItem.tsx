@@ -1,20 +1,25 @@
+import { useState } from "react";
 import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "@mantine/hooks";
+import { categories } from "../constants/data";
 
 type PreferenceItemProps = {
   label: string;
 };
 
 export const PreferenceItem = ({ label }: PreferenceItemProps) => {
-  const [name, setName] = useLocalStorage<string[]>("categories", []);
+  const [value, setValue] = useLocalStorage<string[]>({
+    key: "categories",
+    defaultValue: [],
+  });
 
   const handleSwitch = (checked: boolean, category: string) => {
     if (checked) {
-      setName([...name, category]);
+      setValue(() => [...value, category]);
     } else {
-      setName(name.filter((a) => a !== category));
+      const newCategories = value.filter((val) => val !== category);
+      setValue(newCategories);
     }
-    console.log(checked);
   };
 
   return (
@@ -27,6 +32,7 @@ export const PreferenceItem = ({ label }: PreferenceItemProps) => {
         colorScheme="primary"
         size="lg"
         ml="auto"
+        isChecked={value.includes(label)}
         onChange={(e) => handleSwitch(e.target.checked, label)}
       />
     </FormControl>
