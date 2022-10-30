@@ -22,16 +22,16 @@ export default function Home() {
 
   const date = new Date();
   const currentDay = date.getDate();
-  console.log(currentDay);
-
   return (
     <>
       <Header />
       <Container h="2xl" maxW="4xl">
         <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
-          {Array.from({ length: 31 }, (_, i) => i + 1).map((value, i) => (
-            <DayItem key={i} id={value} disabled={value !== currentDay} />
-          ))}
+          {Array.from({ length: 31 }, (_, i) => i + 1)
+            .sort(() => Math.random() - 0.5)
+            .map((value, i) => (
+              <DayItem key={i} id={value} disabled={value !== currentDay} />
+            ))}
         </SimpleGrid>
       </Container>
       <IconButton
