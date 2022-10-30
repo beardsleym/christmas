@@ -1,26 +1,23 @@
 import Head from "next/head";
 import NextLink from "next/link";
-import { Container, IconButton, VStack } from "@chakra-ui/react";
+import { Container, IconButton, SimpleGrid } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
+import { Header } from "../components/Header";
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Christmas Advent Calendar</title>
-        <meta name="description" content="christmas advent calendar" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Container h="2xl">
-        <VStack gap={8} mt={8}>
+      <Header />
+      <Container h="2xl" maxW="4xl">
+        <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
           {Array(25)
             .fill("")
             .map((_, i) => (
               <DayItem key={i} id={"1"} />
             ))}
-        </VStack>
+        </SimpleGrid>
       </Container>
       <IconButton
         as={NextLink}

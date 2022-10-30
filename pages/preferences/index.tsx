@@ -3,15 +3,12 @@ import NextLink from "next/link";
 import { Button } from "@chakra-ui/react";
 import { Main } from "../../components/Main";
 import { PreferencesCard } from "../../components/PreferencesCard";
+import { Header } from "../../components/Header";
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="christmas advent calendar" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Header />
       <Main title={"Preferences"}>
         <PreferencesCard />
         <Button
