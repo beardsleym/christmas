@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { Main } from "../components/Main";
-import { Heading, Tag, Center, IconButton } from "@chakra-ui/react";
+import { Heading, Tag, Center, IconButton, Box } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
 import { kitchen, outings } from "../constants/data";

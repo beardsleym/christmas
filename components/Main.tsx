@@ -16,27 +16,25 @@ type MainProps = {
 export const Main = ({ title, children }: MainProps) => {
   return (
     <Container h="2xl">
-      <Center h="full">
-        <Stack spacing={4}>
-          <Center>
-            <Image
-              src="/images/ChristmasTree.svg"
-              alt="christmas-tree"
-              boxSize="32"
-            />
-          </Center>
-          <Heading
-            as="h1"
-            size="lg"
-            noOfLines={1}
-            color="white"
-            textAlign={"center"}
-          >
-            {title}
-          </Heading>
-          {children}
-        </Stack>
-      </Center>
+      <Stack spacing={4} mt={8}>
+        <Center>
+          <Image
+            src="/images/ChristmasTree.svg"
+            alt="christmas-tree"
+            boxSize="32"
+          />
+        </Center>
+        <Heading
+          as="h1"
+          size="lg"
+          noOfLines={1}
+          color="white"
+          textAlign={"center"}
+        >
+          {title}
+        </Heading>
+        {children}
+      </Stack>
       <Image
         src="/images/Presents.svg"
         alt="presents"
