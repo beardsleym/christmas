@@ -20,7 +20,11 @@ export default function Home() {
   });
 
   useEffect(() => {
-    if (typeof value === "object" && value.length === 0)
+    if (
+      localStorage.getItem("categories") === null ||
+      localStorage.getItem("daysArray") === null ||
+      (typeof value === "object" && value.length === 0)
+    )
       router.push("/preferences");
   }, [router, value]);
 
