@@ -9,7 +9,7 @@ type PreferenceItemProps = {
 export const PreferenceItem = ({ label }: PreferenceItemProps) => {
   const [value, setValue] = useLocalStorage<string[]>({
     key: "categories",
-    defaultValue: [],
+    defaultValue: undefined,
   });
 
   const handleSwitch = (checked: boolean, category: string) => {
