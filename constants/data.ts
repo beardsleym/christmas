@@ -24,3 +24,16 @@ export const outings = [
   "Check out books from the library about how people celebrate Christmas in other nations.",
   "Attend a holiday craft bazaar with grandma.",
 ];
+
+export const categories = [
+  "Craft and create",
+  "Serving others",
+  "In the kitchen",
+  "Faith-based activities",
+  "Decorating",
+  "Outings",
+  "Fun at home",
+  "Christmas movies",
+  "Winter activities",
+  "Summer activities",
+];
