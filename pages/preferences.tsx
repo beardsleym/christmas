@@ -50,6 +50,7 @@ export default function Home() {
           onClick={() => router.push("/")}
           backgroundColor={"gray.600"}
           color="white"
+          _hover={{ backgroundColor: "gray.300", color: "gray.600" }}
           size="lg"
           disabled={!value.length}
         >
