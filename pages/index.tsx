@@ -14,7 +14,7 @@ export default function Home() {
     key: "categories",
     defaultValue: undefined,
   });
-  const [array, setArray] = useLocalStorage<Number[]>({
+  const [daysArray, setArray] = useLocalStorage<Number[]>({
     key: "daysArray",
     defaultValue: undefined,
   });
@@ -35,8 +35,8 @@ export default function Home() {
       <Header />
       <Container h="2xl" maxW="4xl">
         <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
-          {array &&
-            array.map((value, i) => (
+          {daysArray &&
+            daysArray.map((value, i) => (
               <DayItem key={i} id={value} disabled={value !== currentDay} />
             ))}
         </SimpleGrid>
