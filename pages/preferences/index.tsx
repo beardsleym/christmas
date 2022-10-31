@@ -1,12 +1,13 @@
 import Head from "next/head";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { Button } from "@chakra-ui/react";
+import { Button, IconButton } from "@chakra-ui/react";
 import { Main } from "../../components/Main";
 import { PreferencesCard } from "../../components/PreferencesCard";
 import { Header } from "../../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
 import { useEffect, useState } from "react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function Home() {
   const router = useRouter();
@@ -43,6 +44,15 @@ export default function Home() {
           Save
         </Button>
       </Main>
+      <IconButton
+        aria-label="clear"
+        icon={<DeleteIcon w={8} h={8} />}
+        position="fixed"
+        bottom="30"
+        left="30"
+        colorScheme="transparent"
+        onClick={() => localStorage.clear()}
+      />
     </>
   );
 }
