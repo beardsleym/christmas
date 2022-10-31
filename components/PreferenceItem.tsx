@@ -7,23 +7,23 @@ type PreferenceItemProps = {
 };
 
 export const PreferenceItem = ({ label }: PreferenceItemProps) => {
-  const [value, setValue] = useLocalStorage<string[]>({
+  const [usersCategories, setUsersCategories] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
   });
 
   const handleSwitch = (checked: boolean, category: string) => {
     if (checked) {
-      setValue(() => [...value, category]);
+      setUsersCategories(() => [...usersCategories, category]);
     } else {
-      const newCategories = value.filter((val) => val !== category);
-      setValue(newCategories);
+      const newCategories = usersCategories.filter((val) => val !== category);
+      setUsersCategories(newCategories);
     }
   };
 
   return (
     <FormControl display="flex" alignItems="center">
-      <FormLabel htmlFor="email-alerts" mb="0">
+      <FormLabel htmlFor="preference-item" mb="0">
         {label}
       </FormLabel>
       <Switch
@@ -31,7 +31,7 @@ export const PreferenceItem = ({ label }: PreferenceItemProps) => {
         colorScheme="primary"
         size="lg"
         ml="auto"
-        isChecked={value.includes(label)}
+        isChecked={usersCategories.includes(label)}
         onChange={(e) => handleSwitch(e.target.checked, label)}
       />
     </FormControl>
