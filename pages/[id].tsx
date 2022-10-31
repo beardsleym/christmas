@@ -6,7 +6,7 @@ import { Heading, Tag, Center, IconButton, Box } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
-import { categories, kitchen, outings, decorating } from "../constants/data";
+import { kitchen, outings, decorating } from "../constants/data";
 
 type itemProps = {
   category?: string;
@@ -16,12 +16,15 @@ type itemProps = {
 export default function ID() {
   const router = useRouter();
   const { id } = router.query;
-  const [text, setText] = useState("");
-  const [category, setCategory] = useState(null);
-  const [item, setItem] = useState<itemProps>({});
+  const [item, setItem] = useState<itemProps>({ category: "", text: "" });
   const [value, setValue] = useLocalStorage<string[]>({
     key: "categories",
   });
+  const [event, setEvent] = useLocalStorage<itemProps>({
+    key: `${id}`,
+  });
+  console.log(id);
+  console.log(id, typeof id);
 
   const concatCategories = (val: string) => {
     switch (val) {
@@ -39,16 +42,23 @@ export default function ID() {
   useEffect(() => {
     if (value.length) {
       let arr: object[] = [];
-      if (localStorage.getItem("categories") !== null) {
-        console.log(value);
-        console.log(categories);
-        value.forEach((val) => {
-          arr = arr.concat(concatCategories(val));
-        });
-        setItem(arr[Math.floor(Math.random() * arr.length)]);
+      if (localStorage.getItem("categories") !== null && id !== undefined) {
+        if (localStorage.getItem(`${id}`)) {
+          const item: itemProps = JSON.parse(
+            localStorage.getItem(`${id}`) || "{}"
+          );
+          setItem(item);
+        } else {
+          value.forEach((val) => {
+            arr = arr.concat(concatCategories(val));
+          });
+          const item: itemProps = arr[Math.floor(Math.random() * arr.length)];
+          setItem(item);
+          setEvent(item);
+        }
       }
     }
-  }, [value]);
+  }, [value, setEvent, event, id]);
 
   return (
     <>
