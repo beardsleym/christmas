@@ -1,23 +1,54 @@
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { Main } from "../components/Main";
 import { Heading, Tag, Center, IconButton, Box } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
-import { kitchen, outings } from "../constants/data";
+import { useLocalStorage } from "@mantine/hooks";
+import { categories, kitchen, outings, decorating } from "../constants/data";
+
+type itemProps = {
+  category?: string;
+  text?: string;
+};
 
 export default function ID() {
   const router = useRouter();
   const { id } = router.query;
-  let text;
-  let category;
-  if (Number(id) % 2 === 0) {
-    category = "KITCHEN";
-    text = kitchen[Math.floor(Math.random() * kitchen.length)];
-  } else {
-    category = "OUTINGS";
-    text = outings[Math.floor(Math.random() * outings.length)];
-  }
+  const [text, setText] = useState("");
+  const [category, setCategory] = useState(null);
+  const [item, setItem] = useState<itemProps>({});
+  const [value, setValue] = useLocalStorage<string[]>({
+    key: "categories",
+  });
+
+  const concatCategories = (val: string) => {
+    switch (val) {
+      case "Kitchen":
+        return kitchen();
+      case "Outings":
+        return outings();
+      case "Decorating":
+        return decorating();
+      default:
+        return [];
+    }
+  };
+
+  useEffect(() => {
+    if (value.length) {
+      let arr: object[] = [];
+      if (localStorage.getItem("categories") !== null) {
+        console.log(value);
+        console.log(categories);
+        value.forEach((val) => {
+          arr = arr.concat(concatCategories(val));
+        });
+        setItem(arr[Math.floor(Math.random() * arr.length)]);
+      }
+    }
+  }, [value]);
 
   return (
     <>
@@ -35,11 +66,11 @@ export default function ID() {
         />
         <Center>
           <Tag size={"lg"} variant="solid" backgroundColor="grey.600">
-            {category}
+            {item?.category?.toUpperCase()}
           </Tag>
         </Center>
         <Heading as="h2" size={"3xl"} color="white" textAlign={"center"}>
-          {text}
+          {item?.text}
         </Heading>
       </Main>
     </>
