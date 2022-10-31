@@ -10,7 +10,7 @@ import {
   AlertDialogCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { QuestionOutlineIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
 export const Info = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -21,7 +21,7 @@ export const Info = () => {
       <IconButton
         onClick={onOpen}
         aria-label="info"
-        icon={<QuestionOutlineIcon w={8} h={8} />}
+        icon={<InfoOutlineIcon w={8} h={8} />}
         position="fixed"
         top="30"
         right="30"
