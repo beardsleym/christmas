@@ -6,7 +6,7 @@ import { Heading, Tag, Center, IconButton, Stack } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
-import { kitchen, outings, decorating } from "../constants/data";
+import { kitchen, outings, decorating, movies } from "../constants/data";
 import { Spinner } from "@chakra-ui/react";
 
 type itemProps = {
@@ -33,6 +33,8 @@ export default function ID() {
         return outings();
       case "Decorating":
         return decorating();
+      case "Christmas Movies":
+        return movies();
       default:
         return [];
     }

@@ -36,6 +36,26 @@ const decoratingList: string[] = [
   "Decorate the windows with spray snow",
 ];
 
+const moviesList: string[] = [
+  "Miracle on 34th Street",
+  "White Christmas",
+  "How the Grinch Stole Christmas",
+  "Charlie Brown’s Christmas",
+  "It’s a Wonderful Life",
+  "The Nativity Story",
+  "Elf",
+  "Home Alone",
+  "The Muppet Christmas Carol",
+  "The Nutcracker Ballet",
+  "The Polar Express",
+  "Mickey’s Christmas Carol",
+  "National Lampoons Christmas Vacation",
+  "The Christmas Story",
+  "A Christmas Carol",
+  "The Snowman",
+  "Rudolph the Red-Nosed Reindeer",
+];
+
 export const categories: string[] = [
   // display on preferences page and use for logic
   // "Craft and create",
@@ -44,7 +64,7 @@ export const categories: string[] = [
   "Decorating",
   "Outings",
   // "Fun at home",
-  // "Christmas movies",
+  "Christmas Movies",
   // "Winter activities",
   // "Summer activities",
 ];
@@ -71,6 +91,14 @@ export const decorating = () => {
     const container: any = {};
     container.text = i;
     container.category = "decorating";
+    return container;
+  });
+};
+export const movies = () => {
+  return moviesList.map((i) => {
+    const container: any = {};
+    container.text = i;
+    container.category = "movies";
     return container;
   });
 };
