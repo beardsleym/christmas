@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { Main } from "../components/Main";
-import { Heading, Tag, Center, IconButton, Box } from "@chakra-ui/react";
+import { Heading, Tag, Center, IconButton, Stack } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
 import { kitchen, outings, decorating } from "../constants/data";
+import { Spinner } from "@chakra-ui/react";
 
 type itemProps = {
   category?: string;
@@ -74,7 +75,7 @@ export default function ID() {
           const diff = getDifference(arr, usedItems);
           const item: itemProps = diff[Math.floor(Math.random() * diff.length)];
           setItem(item);
-          setEvent(item);
+          if (item) setEvent(item);
         }
       }
     }
@@ -94,14 +95,29 @@ export default function ID() {
           left="30"
           colorScheme="transparent"
         />
-        <Center>
-          <Tag size={"lg"} variant="solid" backgroundColor="grey.600">
-            {item?.category?.toUpperCase()}
-          </Tag>
+        <Center h="50vh">
+          <Stack gap={8} maxW={"sm"}>
+            {item?.category ? (
+              <Center>
+                <Tag size={"lg"} variant="solid" backgroundColor="grey.600">
+                  {item?.category?.toUpperCase()}
+                </Tag>
+              </Center>
+            ) : (
+              <Spinner
+                thickness="4px"
+                speed="1s"
+                emptyColor="gray.600"
+                color="white"
+                size="xl"
+                mt={16}
+              />
+            )}
+            <Heading as="h2" size={"3xl"} color="white" textAlign={"center"}>
+              {item?.text}
+            </Heading>
+          </Stack>
         </Center>
-        <Heading as="h2" size={"3xl"} color="white" textAlign={"center"}>
-          {item?.text}
-        </Heading>
       </Main>
     </>
   );

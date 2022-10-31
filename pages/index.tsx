@@ -1,6 +1,12 @@
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { Container, IconButton, SimpleGrid } from "@chakra-ui/react";
+import {
+  Container,
+  IconButton,
+  SimpleGrid,
+  Spinner,
+  Center,
+} from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
@@ -34,12 +40,24 @@ export default function Home() {
     <>
       <Header />
       <Container h="2xl" maxW="4xl">
-        <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
-          {daysArray &&
-            daysArray.map((value, i) => (
+        {daysArray ? (
+          <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
+            {daysArray.map((value, i) => (
               <DayItem key={i} id={value} disabled={value !== currentDay} />
             ))}
-        </SimpleGrid>
+          </SimpleGrid>
+        ) : (
+          <Center h="100vh">
+            <Spinner
+              thickness="4px"
+              speed="1s"
+              emptyColor="gray.600"
+              color="white"
+              size="xl"
+              mt={16}
+            />
+          </Center>
+        )}
       </Container>
       <IconButton
         as={NextLink}
