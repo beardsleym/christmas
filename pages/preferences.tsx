@@ -1,7 +1,7 @@
 import Head from "next/head";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { Button, IconButton } from "@chakra-ui/react";
+import { Button, IconButton, useToast } from "@chakra-ui/react";
 import { Main } from "../components/Main";
 import { PreferencesCard } from "../components/PreferencesCard";
 import { Header } from "../components/Header";
@@ -11,6 +11,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function Home() {
   const router = useRouter();
+  const toast = useToast();
   const [value, setValue] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
@@ -19,6 +20,17 @@ export default function Home() {
     key: "daysArray",
     defaultValue: undefined,
   });
+
+  const clearData = () => {
+    localStorage.clear();
+    toast({
+      title: "Info Cleared",
+      description: "We have cleared your information for you.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
 
   useEffect(() => {
     if (localStorage.getItem("daysArray") === null) {
@@ -51,7 +63,7 @@ export default function Home() {
         bottom="30"
         left="30"
         colorScheme="transparent"
-        onClick={() => localStorage.clear()}
+        onClick={clearData}
       />
     </>
   );
