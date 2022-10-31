@@ -96,7 +96,7 @@ export default function ID() {
           colorScheme="transparent"
         />
         <Center h="50vh">
-          <Stack gap={8} maxW={"sm"}>
+          <Stack gap={8} maxW={"md"}>
             {item?.category ? (
               <Center>
                 <Tag size={"lg"} variant="solid" backgroundColor="grey.600">
