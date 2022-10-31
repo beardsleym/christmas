@@ -23,8 +23,6 @@ export default function ID() {
   const [event, setEvent] = useLocalStorage<itemProps>({
     key: `${id}`,
   });
-  console.log(id);
-  console.log(id, typeof id);
 
   const concatCategories = (val: string) => {
     switch (val) {
@@ -39,20 +37,42 @@ export default function ID() {
     }
   };
 
+  function getDifference(array1: itemProps[], array2: itemProps[]) {
+    return array1.filter((object1: itemProps) => {
+      return !array2.some((object2: itemProps) => {
+        return object1.text === object2.text;
+      });
+    });
+  }
+
   useEffect(() => {
     if (value.length) {
-      let arr: object[] = [];
+      let arr: object[] = []; // temp array
       if (localStorage.getItem("categories") !== null && id !== undefined) {
+        // Already visited
         if (localStorage.getItem(`${id}`)) {
           const item: itemProps = JSON.parse(
             localStorage.getItem(`${id}`) || "{}"
           );
           setItem(item);
         } else {
+          // Get used items
+          const usedItems: itemProps[] = [];
+          for (let i = 0; i < 31; i++) {
+            const usedItem = JSON.parse(
+              localStorage.getItem(i.toString()) || "{}"
+            );
+            if (usedItem.text) {
+              usedItems.push(usedItem);
+            }
+          }
+          // categories
           value.forEach((val) => {
+            // all responses
             arr = arr.concat(concatCategories(val));
           });
-          const item: itemProps = arr[Math.floor(Math.random() * arr.length)];
+          const diff = getDifference(arr, usedItems);
+          const item: itemProps = diff[Math.floor(Math.random() * diff.length)];
           setItem(item);
           setEvent(item);
         }
