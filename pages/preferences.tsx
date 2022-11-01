@@ -6,7 +6,7 @@ import { Main } from "../components/Main";
 import { PreferencesCard } from "../components/PreferencesCard";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function Home() {
@@ -20,9 +20,16 @@ export default function Home() {
     key: "daysArray",
     defaultValue: undefined,
   });
+  const fillDays = useCallback(() => {
+    const arr: Number[] = Array.from({ length: 31 }, (_, i) => i + 1).sort(
+      () => Math.random() - 0.5
+    );
+    setArray(arr);
+  }, [setArray]);
 
   const clearData = () => {
     localStorage.clear();
+    fillDays();
     toast({
       title: "Info Cleared",
       description: "We have cleared your information for you.",
@@ -34,12 +41,9 @@ export default function Home() {
 
   useEffect(() => {
     if (localStorage.getItem("daysArray") === null) {
-      const arr: Number[] = Array.from({ length: 31 }, (_, i) => i + 1).sort(
-        () => Math.random() - 0.5
-      );
-      setArray(arr);
+      fillDays();
     }
-  }, [setArray]);
+  }, [fillDays]);
 
   return (
     <>
