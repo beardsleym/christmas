@@ -52,9 +52,9 @@ export default function Home() {
           color="white"
           _hover={{ backgroundColor: "gray.300", color: "gray.600" }}
           size="lg"
-          disabled={!value.length}
+          disabled={value.length < 3}
         >
-          Save
+          {value.length > 2 ? "Save" : `Select ${3 - value.length} more`}
         </Button>
       </Main>
       <IconButton
