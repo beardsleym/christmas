@@ -126,7 +126,7 @@ export default function ID() {
                 mt={16}
               />
             )}
-            <Heading as="h2" size={"3xl"} color="white" textAlign={"center"}>
+            <Heading as="h3" size={"lg"} color="white" textAlign={"center"}>
               {item?.text}
             </Heading>
           </Stack>
