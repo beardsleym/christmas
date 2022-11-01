@@ -74,6 +74,38 @@ const craftList: string[] = [
   "Make a bouquet of poinsettias out of felt or construction paper and pipe cleaners.",
   "Make a pinecone bird feeder and attach a little note that says, “Merry Christmas birdies!",
 ];
+const homeList: string[] = [
+  "Have a living room dance party to a fun Christmas album.",
+  "Let everyone in the family choose a country and then google to see how they celebrate Christmas there.",
+  "Unwrap and read a new Christmas book.",
+  "Wrap grandma and grandpa’s gifts.",
+  "Pull out mattresses and have a family slumber party under the tree.",
+  "Have a family story night and read all your Christmas storybooks while enjoying a plate of cookies and milk.",
+  "Snuggle up in mom and dad’s bed and read The Night Before Christmas.",
+  "Have a funny Christmas photo shoot (80’s Christmas sweaters?!).",
+  "Make popcorn and watch home movies from the year.",
+  "Choose your favorite photos for a family yearbook.",
+  "Make some personal and family New Years goals.",
+  "Wrap daddy’s gift with mommy (or mommy’s gift with daddy).",
+  "Wrap up your holiday books for the kids to open and read together as a family (include one new book for the year).",
+  "Read Elf on the Shelf (and let the fun begin!).",
+  "Make a “pillow bed” on the living room floor and watch some classic Christmas cartoons (Rudolf, Frosty, etc.) together.",
+  "Send a small Christmas care package to a missionary or foreign exchange student.",
+  "Give each family member a shoe box and tell them to collect and fill it with red and green things from around the house or yard.",
+  "YouTube funny Christmas caroling videos together.",
+  "Use only Christmas mugs for all of your drinks for an entire day.",
+  "Draw the kids a bubble bath by candlelight with Christmas tunes playing on the stereo.",
+  "Interview each family member on video asking a short list of questions (favorite memory from the year, etc.).",
+  "Celebrate Saint Nicolas Day (December 6th) by doing a secret act of kindness.",
+  "Let each child choose a friend to invite over for a Christmas-themed morning tea.",
+  "Draw names and write a love note for a family member. Leave them out on Christmas Eve for Santa to distribute into their stocking.",
+  "Have a “fancy dress” code for dinner one night.",
+  "Check your shoes on Saint Nicolas Day – December 6th. [Leave the kids a few pieces of candy.]",
+  "'Help' dad put up the outdoor Christmas lights.",
+  "Write a “new” Christmas carol, personalizing (re-writing) the words to one of your favorites.",
+  "Invite another family to come over in their jammies to watch a favorite Christmas movie and share a favorite Christmas treat.",
+  "Get out a Christmas songbook and sing a few carols before nap time and bed time. (We actually do this for the entire month, but thought I’d include it for families who are a bit less gung-ho about the all-month caroling. Ha!)",
+];
 
 export const categories: string[] = [
   // display on preferences page and use for logic
@@ -82,7 +114,7 @@ export const categories: string[] = [
   "Kitchen",
   "Decorating",
   "Outings",
-  // "Fun at home",
+  "Fun at Home",
   "Christmas Movies",
   // "Winter activities",
   // "Summer activities",
@@ -130,7 +162,15 @@ export const crafting = () => {
   return craftList.map((i) => {
     const container: itemProps = { text: "", category: "" };
     container.text = i;
-    container.category = "craft";
+    container.category = "crafting";
+    return container;
+  });
+};
+export const home = () => {
+  return homeList.map((i) => {
+    const container: itemProps = { text: "", category: "" };
+    container.text = i;
+    container.category = "home";
     return container;
   });
 };

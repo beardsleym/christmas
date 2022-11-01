@@ -12,6 +12,7 @@ import {
   decorating,
   movies,
   crafting,
+  home,
 } from "../constants/data";
 import { Spinner } from "@chakra-ui/react";
 
@@ -43,6 +44,8 @@ export default function ID() {
         return movies();
       case "Craft & Create":
         return crafting();
+      case "Fun at Home":
+        return home();
       default:
         return [];
     }
