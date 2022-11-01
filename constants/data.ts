@@ -55,10 +55,29 @@ const moviesList: string[] = [
   "The Snowman",
   "Rudolph the Red-Nosed Reindeer",
 ];
+const craftList: string[] = [
+  "Write (or color on) Christmas cards.",
+  "Decorate a Christmas card for your teacher, Sunday School teacher, or favorite babysitter.",
+  "Make a handmade Christmas ornament for someone else in the family.",
+  "Color a Christmas picture or make a Christmas craft.",
+  "Make paper snowflakes to hang from the kids’ bedroom ceiling.",
+  "Write letters to Santa.",
+  "Make and mail a Christmas card to a family member or friend who lives in another state or country.",
+  "Make a silly Christmas video to email to friends (or post on facebook) on Christmas day.",
+  "Make (or draw inside) thank you cards that are ready to be filled out after Christmas.",
+  "Make thumbprint snowmen.",
+  "Make homemade play dough in red and green.",
+  "Make play dough snowmen.",
+  "Make a video of each family member singing their favorite Christmas song.",
+  "Make glitter snow globes out of baby food jars. (Secure the lids with a hot glue gun!)",
+  "Paint pinecones to make a centerpiece for the table or to display in a clear vase or string on a bunting.",
+  "Make a bouquet of poinsettias out of felt or construction paper and pipe cleaners.",
+  "Make a pinecone bird feeder and attach a little note that says, “Merry Christmas birdies!",
+];
 
 export const categories: string[] = [
   // display on preferences page and use for logic
-  // "Craft and create",
+  "Craft & Create",
   // "Serving others",
   "Kitchen",
   "Decorating",
@@ -68,6 +87,11 @@ export const categories: string[] = [
   // "Winter activities",
   // "Summer activities",
 ];
+
+type itemProps = {
+  text: string;
+  category: string;
+};
 
 export const outings = () => {
   return outingsList.map((i) => {
@@ -80,7 +104,7 @@ export const outings = () => {
 
 export const kitchen = () => {
   return kitchenList.map((i) => {
-    const container: any = {};
+    const container: itemProps = { text: "", category: "" };
     container.text = i;
     container.category = "kitchen";
     return container;
@@ -88,7 +112,7 @@ export const kitchen = () => {
 };
 export const decorating = () => {
   return decoratingList.map((i) => {
-    const container: any = {};
+    const container: itemProps = { text: "", category: "" };
     container.text = i;
     container.category = "decorating";
     return container;
@@ -96,9 +120,17 @@ export const decorating = () => {
 };
 export const movies = () => {
   return moviesList.map((i) => {
-    const container: any = {};
+    const container: itemProps = { text: "", category: "" };
     container.text = i;
     container.category = "movies";
+    return container;
+  });
+};
+export const crafting = () => {
+  return craftList.map((i) => {
+    const container: itemProps = { text: "", category: "" };
+    container.text = i;
+    container.category = "craft";
     return container;
   });
 };
