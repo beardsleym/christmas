@@ -21,7 +21,7 @@ export default function Home() {
     defaultValue: undefined,
   });
   const fillDays = useCallback(() => {
-    const arr: Number[] = Array.from({ length: 31 }, (_, i) => i + 1).sort(
+    const arr: Number[] = Array.from({ length: 25 }, (_, i) => i + 1).sort(
       () => Math.random() - 0.5
     );
     setArray(arr);
