@@ -23,7 +23,7 @@ export const DayItem = ({ id, disabled }: DayItemProps) => {
           </Heading>
         </Center>
         <Image
-          src="/images/House.svg"
+          src="images/House.svg"
           alt="house"
           opacity={disabled ? "30%" : "100%"}
         />
