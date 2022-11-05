@@ -26,9 +26,12 @@ export default function Home() {
   });
 
   useEffect(() => {
+    const d = new Date();
+    const currentMonth = d.getMonth();
     if (
       localStorage.getItem("categories") === null ||
       localStorage.getItem("daysArray") === null ||
+      localStorage.getItem("currentMonth") !== `${currentMonth}` ||
       (typeof value === "object" && value.length === 0)
     )
       router.push("/preferences");

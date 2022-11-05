@@ -20,6 +20,10 @@ export default function Home() {
     key: "daysArray",
     defaultValue: undefined,
   });
+  const [month, setMonth] = useLocalStorage<number>({
+    key: "currentMonth",
+    defaultValue: undefined,
+  });
   const fillDays = useCallback(() => {
     const arr: Number[] = Array.from({ length: 25 }, (_, i) => i + 1).sort(
       () => Math.random() - 0.5
@@ -27,7 +31,7 @@ export default function Home() {
     setArray(arr);
   }, [setArray]);
 
-  const clearData = () => {
+  const clearData = useCallback(() => {
     localStorage.clear();
     fillDays();
     toast({
@@ -37,13 +41,20 @@ export default function Home() {
       duration: 3000,
       isClosable: true,
     });
-  };
+  }, [fillDays, toast]);
 
   useEffect(() => {
+    const d = new Date();
+    const currentMonth = d.getMonth();
     if (localStorage.getItem("daysArray") === null) {
       fillDays();
     }
-  }, [fillDays]);
+    if (localStorage.getItem("currentMonth") === null) {
+      setMonth(currentMonth);
+    } else if (localStorage.getItem("currentMonth") !== `${currentMonth}`) {
+      clearData();
+    }
+  }, [fillDays, setMonth, clearData]);
 
   return (
     <>
