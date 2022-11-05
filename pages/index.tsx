@@ -12,10 +12,11 @@ import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [currentDay, setCurrentDay] = useState(0);
   const [value, setValue] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
@@ -24,6 +25,16 @@ export default function Home() {
     key: "daysArray",
     defaultValue: undefined,
   });
+
+  const getCurrentDay = () => {
+    const date = new Date();
+    const currentDay = date.getDate();
+    setCurrentDay(currentDay);
+    const intervalId = setInterval(() => {
+      setCurrentDay(currentDay);
+    }, 60000);
+    return intervalId;
+  };
 
   useEffect(() => {
     const d = new Date();
@@ -35,10 +46,12 @@ export default function Home() {
       (typeof value === "object" && value.length === 0)
     )
       router.push("/preferences");
+    const intervalId = getCurrentDay();
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [router, value]);
 
-  const date = new Date();
-  const currentDay = date.getDate();
   return (
     <>
       <Header />
