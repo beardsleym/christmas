@@ -41,7 +41,7 @@ export default function Home() {
       <Header />
       <Container h="2xl" maxW="4xl">
         {daysArray ? (
-          <SimpleGrid m={8} columns={[1, 2, 3]} spacingX={8} spacingY={8}>
+          <SimpleGrid m={8} columns={[1, null, 2, 3]} spacingX={4} spacingY={8}>
             {daysArray.map((value, i) => (
               <DayItem key={i} id={value} disabled={value !== currentDay} />
             ))}

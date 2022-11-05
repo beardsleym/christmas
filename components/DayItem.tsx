@@ -6,28 +6,27 @@ type DayItemProps = {
   disabled: boolean;
 };
 
+const basicBoxStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  paddingTop: "24",
+  textAlign: "center",
+  height: "250px",
+  width: "264px",
+  background: "url(images/House.svg) center/cover no-repeat",
+};
+
 export const DayItem = ({ id, disabled }: DayItemProps) => {
   return (
     <NextLink href={disabled ? "" : `/${id}`} scroll={false}>
-      <Box position={"relative"}>
-        <Center>
-          <Heading
-            size={"4xl"}
-            color={disabled ? "whiteAlpha.500" : "white"}
-            position={"absolute"}
-            top={"64%"}
-            left={"39%"}
-            textAlign="center"
-          >
+      <Center>
+        <Box sx={basicBoxStyles} opacity={disabled ? "30%" : "100%"}>
+          <Heading pr={4} size={"4xl"} color="white">
             {id.toString()}
           </Heading>
-        </Center>
-        <Image
-          src="images/House.svg"
-          alt="house"
-          opacity={disabled ? "30%" : "100%"}
-        />
-      </Box>
+        </Box>
+      </Center>
     </NextLink>
   );
 };
