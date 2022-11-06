@@ -1,5 +1,7 @@
-import NextLink from "next/link";
+import { useEffect, useState } from "react";
+import { GetStaticPropsContext } from "next/types";
 import { useRouter } from "next/router";
+import NextLink from "next/link";
 import {
   Container,
   IconButton,
@@ -8,31 +10,29 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
+import { useLocalStorage } from "@mantine/hooks";
 import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
 import { Header } from "../components/Header";
-import { useLocalStorage } from "@mantine/hooks";
-import { useEffect, useState } from "react";
-import { GetStaticPropsContext } from "next/types";
 
 export default function Home() {
   const router = useRouter();
   const [currentDay, setCurrentDay] = useState(0);
-  const [value, setValue] = useLocalStorage<string[]>({
+  const [value] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
   });
-  const [daysArray, setArray] = useLocalStorage<Number[]>({
+  const [daysArray] = useLocalStorage<Number[]>({
     key: "daysArray",
     defaultValue: undefined,
   });
 
   const getCurrentDay = () => {
     const date = new Date();
-    const currentDay = date.getDate();
-    setCurrentDay(currentDay);
+    const day = date.getDate();
+    setCurrentDay(day);
     const intervalId = setInterval(() => {
-      setCurrentDay(currentDay);
+      setCurrentDay(day);
     }, 60000);
     return intervalId;
   };
@@ -64,8 +64,8 @@ export default function Home() {
             spacingY={8}
             py={8}
           >
-            {daysArray.map((value, i) => (
-              <DayItem key={i} id={value} disabled={value !== currentDay} />
+            {daysArray.map((val, i) => (
+              <DayItem key={i} id={val} disabled={val !== currentDay} />
             ))}
           </SimpleGrid>
         ) : (
