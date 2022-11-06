@@ -19,7 +19,7 @@ export const Main = ({ title, children }: MainProps) => {
       <Stack spacing={4} mt={8}>
         <Center>
           <Image
-            src="images/ChristmasTree.svg"
+            src="/images/ChristmasTree.svg"
             alt="christmas-tree"
             boxSize="32"
           />
@@ -36,7 +36,7 @@ export const Main = ({ title, children }: MainProps) => {
         {children}
       </Stack>
       <Image
-        src="images/Presents.svg"
+        src="/images/Presents.svg"
         alt="presents"
         boxSize={"80"}
         position="fixed"

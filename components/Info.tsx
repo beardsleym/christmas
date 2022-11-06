@@ -11,10 +11,13 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { useTranslations } from "next-intl";
+import { GetStaticPropsContext } from "next/types";
 
 export const Info = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
+  const t = useTranslations("Info");
 
   return (
     <>
@@ -37,16 +40,20 @@ export const Info = () => {
         <AlertDialogOverlay />
 
         <AlertDialogContent>
-          <AlertDialogHeader>How does it work</AlertDialogHeader>
+          <AlertDialogHeader>{t("title")}</AlertDialogHeader>
           <AlertDialogCloseButton />
-          <AlertDialogBody>
-            Click on the house that is todays current date, just in a real
-            advent calendar. Enjoy your mystery activity with family and
-            friends.
-          </AlertDialogBody>
+          <AlertDialogBody>{t("body")}</AlertDialogBody>
           <AlertDialogFooter></AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </>
   );
 };
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`../messages/${locale}.json`)).default,
+    },
+  };
+}

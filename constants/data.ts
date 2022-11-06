@@ -107,15 +107,26 @@ const homeList: string[] = [
   "Get out a Christmas songbook and sing a few carols before nap time and bed time. (We actually do this for the entire month, but thought I’d include it for families who are a bit less gung-ho about the all-month caroling. Ha!)",
 ];
 
-export const categories: string[] = [
+export type categoryProps = {
+  en: string;
+  fr: string;
+  [key: string]: string;
+};
+
+export const categories: categoryProps[] = [
   // display on preferences page and use for logic
-  "Craft & Create",
+  { en: "Craft & Create", fr: "Travaux Manuels" },
+  { en: "Kitchen", fr: "Dans la cuisine" },
+  { en: "Decorating", fr: "Décorations" },
+  { en: "Outings", fr: "Sorties" },
+  { en: "Fun at Home", fr: "S'amuser à la maison" },
+  { en: "Christmas Movies", fr: "Films de Noël" },
   // "Serving others",
-  "Kitchen",
-  "Decorating",
-  "Outings",
-  "Fun at Home",
-  "Christmas Movies",
+  // "Kitchen",
+  // "Decorating",
+  // "Outings",
+  // "Fun at Home",
+  // "Christmas Movies",
   // "Winter activities",
   // "Summer activities",
 ];
