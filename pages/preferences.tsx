@@ -10,6 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useTranslations } from "next-intl";
 import { GetStaticPropsContext } from "next/types";
+import { LanguageSwitch } from "../components/LanguageSwitch";
 
 export default function Home() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function Home() {
   const clearData = useCallback(() => {
     localStorage.clear();
     fillDays();
+    window.location.reload();
     toast({
       title: t("resetTitle"),
       description: t("resetBody"),
@@ -89,6 +91,7 @@ export default function Home() {
         colorScheme="transparent"
         onClick={clearData}
       />
+      <LanguageSwitch />
     </>
   );
 }
