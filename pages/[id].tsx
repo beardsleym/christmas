@@ -17,6 +17,7 @@ type itemProps = {
 export default function ID() {
   const router = useRouter();
   const { id } = router.query;
+  const locale = router.locale;
   const [item, setItem] = useState<itemProps>({ category: "", text: "" });
   const [value] = useLocalStorage<string[]>({
     key: "categories",
@@ -55,9 +56,9 @@ export default function ID() {
             }
           }
           // categories
-          value.forEach((val) => {
+          value.forEach((category) => {
             // all responses
-            arr = arr.concat(getItemsFromCategory(val));
+            arr = arr.concat(getItemsFromCategory(category, locale || "en"));
           });
           const diff = getDifference(arr, usedItems);
           const item: itemProps = diff[Math.floor(Math.random() * diff.length)];
