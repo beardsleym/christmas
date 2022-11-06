@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
 import { useLocalStorage } from "@mantine/hooks";
+import { categoryProps } from "../constants/data";
+import { useRouter } from "next/router";
 
 type PreferenceItemProps = {
-  label: string;
+  category: categoryProps;
 };
 
-export const PreferenceItem = ({ label }: PreferenceItemProps) => {
+export const PreferenceItem = ({ category }: PreferenceItemProps) => {
+  const { locale } = useRouter();
   const [usersCategories, setUsersCategories] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
@@ -24,15 +27,15 @@ export const PreferenceItem = ({ label }: PreferenceItemProps) => {
   return (
     <FormControl display="flex" alignItems="center">
       <FormLabel htmlFor="preference-item" mb="0">
-        {label}
+        {category[locale ?? "en"]}
       </FormLabel>
       <Switch
-        id={`${label}`}
+        id={`${category.en}`}
         colorScheme="primary"
         size="lg"
         ml="auto"
-        isChecked={usersCategories.includes(label)}
-        onChange={(e) => handleSwitch(e.target.checked, label)}
+        isChecked={usersCategories.includes(category.en)}
+        onChange={(e) => handleSwitch(e.target.checked, category.en)}
       />
     </FormControl>
   );

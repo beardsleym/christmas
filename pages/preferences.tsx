@@ -8,10 +8,14 @@ import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
 import { useCallback, useEffect, useState } from "react";
 import { DeleteIcon } from "@chakra-ui/icons";
+import { useTranslations } from "next-intl";
+import { GetStaticPropsContext } from "next/types";
+import { LanguageSwitch } from "../components/LanguageSwitch";
 
 export default function Home() {
   const router = useRouter();
   const toast = useToast();
+  const t = useTranslations("Preferences");
   const [value, setValue] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
@@ -34,14 +38,15 @@ export default function Home() {
   const clearData = useCallback(() => {
     localStorage.clear();
     fillDays();
+    window.location.reload();
     toast({
-      title: "Info Cleared",
-      description: "We have cleared your information for you.",
+      title: t("resetTitle"),
+      description: t("resetBody"),
       status: "success",
       duration: 3000,
       isClosable: true,
     });
-  }, [fillDays, toast]);
+  }, [fillDays, toast, t]);
 
   useEffect(() => {
     const d = new Date();
@@ -59,7 +64,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Main title={"Preferences"}>
+      <Main title={t("title")}>
         <PreferencesCard />
         <Button
           onClick={() => router.push("/")}
@@ -69,7 +74,12 @@ export default function Home() {
           size="lg"
           disabled={value.length < 3}
         >
-          {value.length > 2 ? "Save" : `Select ${3 - value.length} more`}
+          {value.length > 2
+            ? t("save")
+            : `${t("select")} ${3 - value.length} ${t("more")}${
+                3 - value.length > 1 && router.locale === "fr" ? "es" : ""
+              }
+              `}
         </Button>
       </Main>
       <IconButton
@@ -81,6 +91,15 @@ export default function Home() {
         colorScheme="transparent"
         onClick={clearData}
       />
+      <LanguageSwitch />
     </>
   );
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`../messages/${locale}.json`)).default,
+    },
+  };
 }

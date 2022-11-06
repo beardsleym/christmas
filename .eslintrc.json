@@ -1,5 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb-base",
+    "airbnb-typescript",
+    "prettier"
+  ],
   "rules": {
     "no-console": "error"
   },
