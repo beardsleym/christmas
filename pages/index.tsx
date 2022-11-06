@@ -13,6 +13,7 @@ import { Info } from "../components/Info";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
 import { useEffect, useState } from "react";
+import { GetStaticPropsContext } from "next/types";
 
 export default function Home() {
   const router = useRouter();
@@ -93,4 +94,12 @@ export default function Home() {
       <Info />
     </>
   );
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      messages: (await import(`../messages/${locale}.json`)).default,
+    },
+  };
 }

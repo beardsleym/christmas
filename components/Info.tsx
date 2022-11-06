@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { useTranslations } from "next-intl";
-import { GetStaticPropsContext } from "next/types";
 
 export const Info = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -49,11 +48,3 @@ export const Info = () => {
     </>
   );
 };
-
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
-  return {
-    props: {
-      messages: (await import(`../messages/${locale}.json`)).default,
-    },
-  };
-}
