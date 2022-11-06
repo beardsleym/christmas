@@ -2,11 +2,11 @@ import NextLink from "next/link";
 import { Image, Center, Heading, Box, Text } from "@chakra-ui/react";
 
 type DayItemProps = {
-  id: Number;
-  disabled: boolean;
+  itemDay: Number;
+  currentDay: Number;
 };
 
-export const DayItem = ({ id, disabled }: DayItemProps) => {
+export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
   const basicBoxStyles = {
     display: "flex",
     alignItems: "center",
@@ -16,20 +16,23 @@ export const DayItem = ({ id, disabled }: DayItemProps) => {
     height: "250px",
     width: "264px",
     background: `url(images/${
-      id === 25 ? "Special" : ""
+      itemDay === 25 ? "Special" : ""
     }House.svg) center/cover no-repeat`,
   };
   return (
-    <NextLink href={disabled ? "" : `/${id}`} scroll={false}>
+    <NextLink href={currentDay < itemDay ? "" : `/${itemDay}`} scroll={false}>
       <Center>
-        <Box sx={basicBoxStyles} opacity={disabled ? "30%" : "100%"}>
+        <Box
+          sx={basicBoxStyles}
+          opacity={currentDay !== itemDay ? "30%" : "100%"}
+        >
           <Heading
             pr={4}
             size={"4xl"}
             color="white"
-            textShadow={id === 25 ? "#000 1px 0 30px" : ""}
+            textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
           >
-            {id.toString()}
+            {itemDay.toString()}
           </Heading>
         </Box>
       </Center>

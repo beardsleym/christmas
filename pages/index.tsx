@@ -64,8 +64,8 @@ export default function Home() {
             spacingY={8}
             py={8}
           >
-            {daysArray.map((val, i) => (
-              <DayItem key={i} id={val} disabled={val !== currentDay} />
+            {daysArray.map((day, i) => (
+              <DayItem key={i} itemDay={day} currentDay={currentDay} />
             ))}
           </SimpleGrid>
         ) : (
