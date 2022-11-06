@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
-import { Main } from "../components/Main";
 import { Heading, Tag, Center, IconButton, Stack } from "@chakra-ui/react";
+import { Main } from "../components/Main";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
-import {
-  kitchen,
-  outings,
-  decorating,
-  movies,
-  crafting,
-  home,
-} from "../constants/data";
+import { getItemsFromCategory } from "../constants/data";
 import { Spinner } from "@chakra-ui/react";
 
 type itemProps = {
@@ -25,31 +18,12 @@ export default function ID() {
   const router = useRouter();
   const { id } = router.query;
   const [item, setItem] = useState<itemProps>({ category: "", text: "" });
-  const [value, setValue] = useLocalStorage<string[]>({
+  const [value] = useLocalStorage<string[]>({
     key: "categories",
   });
   const [event, setEvent] = useLocalStorage<itemProps>({
     key: `${id}`,
   });
-
-  const concatCategories = (val: string) => {
-    switch (val) {
-      case "Kitchen":
-        return kitchen();
-      case "Outings":
-        return outings();
-      case "Decorating":
-        return decorating();
-      case "Christmas Movies":
-        return movies();
-      case "Craft & Create":
-        return crafting();
-      case "Fun at Home":
-        return home();
-      default:
-        return [];
-    }
-  };
 
   function getDifference(array1: itemProps[], array2: itemProps[]) {
     return array1.filter((object1: itemProps) => {
@@ -83,7 +57,7 @@ export default function ID() {
           // categories
           value.forEach((val) => {
             // all responses
-            arr = arr.concat(concatCategories(val));
+            arr = arr.concat(getItemsFromCategory(val));
           });
           const diff = getDifference(arr, usedItems);
           const item: itemProps = diff[Math.floor(Math.random() * diff.length)];
