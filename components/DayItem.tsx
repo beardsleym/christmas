@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { Image, Center, Heading, Box, Text } from "@chakra-ui/react";
+import { Center, Heading, Box } from "@chakra-ui/react";
 
 type DayItemProps = {
   itemDay: Number;

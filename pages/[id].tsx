@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import NextLink from "next/link";
-import { Heading, Tag, Center, IconButton, Stack } from "@chakra-ui/react";
-import { Main } from "../components/Main";
+import { useRouter } from "next/router";
+import {
+  Spinner,
+  Heading,
+  Tag,
+  Center,
+  IconButton,
+  Stack,
+} from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { Header } from "../components/Header";
 import { useLocalStorage } from "@mantine/hooks";
+import { Main } from "../components/Main";
+import { Header } from "../components/Header";
 import { getItemsFromCategory } from "../constants/data";
-import { Spinner } from "@chakra-ui/react";
 
 type itemProps = {
   category?: string;
@@ -27,11 +33,10 @@ export default function ID() {
   });
 
   function getDifference(array1: itemProps[], array2: itemProps[]) {
-    return array1.filter((object1: itemProps) => {
-      return !array2.some((object2: itemProps) => {
-        return object1.text === object2.text;
-      });
-    });
+    return array1.filter(
+      (object1: itemProps) =>
+        !array2.some((object2: itemProps) => object1.text === object2.text)
+    );
   }
 
   useEffect(() => {
@@ -40,10 +45,10 @@ export default function ID() {
       if (localStorage.getItem("categories") !== null && id !== undefined) {
         // Already visited
         if (localStorage.getItem(`${id}`)) {
-          const item: itemProps = JSON.parse(
+          const categoryId: itemProps = JSON.parse(
             localStorage.getItem(`${id}`) || "{}"
           );
-          setItem(item);
+          setItem(categoryId);
         } else {
           // Get used items
           const usedItems: itemProps[] = [];
@@ -61,13 +66,14 @@ export default function ID() {
             arr = arr.concat(getItemsFromCategory(category, locale || "en"));
           });
           const diff = getDifference(arr, usedItems);
-          const item: itemProps = diff[Math.floor(Math.random() * diff.length)];
-          setItem(item);
-          if (item) setEvent(item);
+          const categoryItem: itemProps =
+            diff[Math.floor(Math.random() * diff.length)];
+          setItem(categoryItem);
+          if (categoryItem) setEvent(categoryItem);
         }
       }
     }
-  }, [value, setEvent, event, id]);
+  }, [value, setEvent, event, id, locale]);
 
   return (
     <>

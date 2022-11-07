@@ -1,30 +1,28 @@
-import Head from "next/head";
-import NextLink from "next/link";
+import { useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
+import { GetStaticPropsContext } from "next/types";
+import { useTranslations } from "next-intl";
 import { Button, IconButton, useToast } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import { useLocalStorage } from "@mantine/hooks";
 import { Main } from "../components/Main";
 import { PreferencesCard } from "../components/PreferencesCard";
 import { Header } from "../components/Header";
-import { useLocalStorage } from "@mantine/hooks";
-import { useCallback, useEffect, useState } from "react";
-import { DeleteIcon } from "@chakra-ui/icons";
-import { useTranslations } from "next-intl";
-import { GetStaticPropsContext } from "next/types";
 import { LanguageSwitch } from "../components/LanguageSwitch";
 
 export default function Home() {
   const router = useRouter();
   const toast = useToast();
   const t = useTranslations("Preferences");
-  const [value, setValue] = useLocalStorage<string[]>({
+  const [value] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
   });
-  const [array, setArray] = useLocalStorage<Number[]>({
+  const [, setArray] = useLocalStorage<Number[]>({
     key: "daysArray",
     defaultValue: undefined,
   });
-  const [month, setMonth] = useLocalStorage<number>({
+  const [, setMonth] = useLocalStorage<number>({
     key: "currentMonth",
     defaultValue: undefined,
   });

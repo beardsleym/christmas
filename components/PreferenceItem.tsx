@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
 import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
 import { useLocalStorage } from "@mantine/hooks";
 import { categoryProps } from "../constants/data";
-import { useRouter } from "next/router";
 
 type PreferenceItemProps = {
   category: categoryProps;
@@ -15,11 +14,13 @@ export const PreferenceItem = ({ category }: PreferenceItemProps) => {
     defaultValue: undefined,
   });
 
-  const handleSwitch = (checked: boolean, category: string) => {
+  const handleSwitch = (checked: boolean, switchCategory: string) => {
     if (checked) {
-      setUsersCategories(() => [...usersCategories, category]);
+      setUsersCategories(() => [...usersCategories, switchCategory]);
     } else {
-      const newCategories = usersCategories.filter((val) => val !== category);
+      const newCategories = usersCategories.filter(
+        (val) => val !== switchCategory
+      );
       setUsersCategories(newCategories);
     }
   };

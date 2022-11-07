@@ -37,24 +37,6 @@ export const categories: categoryProps[] = [
   { en: "Christmas Movies", fr: "Films de Noël" },
 ];
 
-export const getItemsFromCategory = (category: string, locale: string) => {
-  const categoryList = getCategoryList(category, locale);
-  if (categoryList?.length) {
-    let newCategory: string = category;
-    if (locale === "fr") {
-      // get french category
-      const cat = categories.find((i) => i.en === category);
-      newCategory = cat?.fr || "";
-    }
-    return categoryList.map((i) => {
-      const container: itemProps = { text: i, category: newCategory }; // display on :id page
-      return container;
-    });
-  } else {
-    return [];
-  }
-};
-
 const getCategoryList = (val: string, locale: string) => {
   if (locale === "fr") {
     switch (val) {
@@ -90,5 +72,23 @@ const getCategoryList = (val: string, locale: string) => {
       default:
         return [];
     }
+  }
+};
+
+export const getItemsFromCategory = (category: string, locale: string) => {
+  const categoryList = getCategoryList(category, locale);
+  if (categoryList?.length) {
+    let newCategory: string = category;
+    if (locale === "fr") {
+      // get french category
+      const cat = categories.find((i) => i.en === category);
+      newCategory = cat?.fr || "";
+    }
+    return categoryList.map((i) => {
+      const container: itemProps = { text: i, category: newCategory }; // display on :id page
+      return container;
+    });
+  } else {
+    return [];
   }
 };

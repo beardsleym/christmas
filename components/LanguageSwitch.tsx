@@ -1,6 +1,7 @@
-import { Button } from "@chakra-ui/button";
+import { Button } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+
 interface LanguageSwitchProps {}
 
 export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({}) => {

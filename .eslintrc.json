@@ -1,12 +1,19 @@
 {
   "extends": [
+    // "airbnb-base",
+    // "airbnb",
+    // "airbnb-typescript",
     "next/core-web-vitals",
-    "airbnb-base",
-    "airbnb-typescript",
     "prettier"
   ],
   "rules": {
-    "no-console": "error"
+    "no-console": "error",
+    "no-unused-vars": "warn",
+    "import/order": "warn",
+    "no-use-before-define": "warn",
+    "no-duplicate-imports": "warn",
+    "no-shadow": "error",
+    "arrow-body-style": "error"
   },
   "reportUnusedDisableDirectives": true
 }
