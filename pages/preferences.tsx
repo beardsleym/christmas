@@ -26,6 +26,10 @@ export default function Home() {
     key: "currentMonth",
     defaultValue: undefined,
   });
+  const [, setUsersCategories] = useLocalStorage<string[]>({
+    key: "categories",
+    defaultValue: undefined,
+  });
   const fillDays = useCallback(() => {
     const arr: Number[] = Array.from({ length: 25 }, (_, i) => i + 1).sort(
       () => Math.random() - 0.5
@@ -36,7 +40,7 @@ export default function Home() {
   const clearData = useCallback(() => {
     localStorage.clear();
     fillDays();
-    window.location.reload();
+    setUsersCategories([]);
     toast({
       title: t("resetTitle"),
       description: t("resetBody"),
