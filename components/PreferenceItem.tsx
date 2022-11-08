@@ -5,29 +5,25 @@ import { categoryProps } from "../constants/data";
 
 type PreferenceItemProps = {
   category: categoryProps;
-  handleSwitch: Function;
 };
 
-export const PreferenceItem = ({
-  category,
-  handleSwitch,
-}: PreferenceItemProps) => {
+export const PreferenceItem = ({ category }: PreferenceItemProps) => {
   const { locale } = useRouter();
-  const [usersCategories] = useLocalStorage<string[]>({
+  const [usersCategories, setUsersCategories] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
   });
 
-  // const handleSwitch = (checked: boolean, switchCategory: string) => {
-  //   if (checked) {
-  //     setUsersCategories(() => [...usersCategories, switchCategory]);
-  //   } else {
-  //     const newCategories = usersCategories.filter(
-  //       (val) => val !== switchCategory
-  //     );
-  //     setUsersCategories(newCategories);
-  //   }
-  // };
+  const handleSwitch = (checked: boolean, switchCategory: string) => {
+    if (checked) {
+      setUsersCategories(() => [...usersCategories, switchCategory]);
+    } else {
+      const newCategories = usersCategories.filter(
+        (val) => val !== switchCategory
+      );
+      setUsersCategories(newCategories);
+    }
+  };
 
   return (
     <FormControl display="flex" alignItems="center">

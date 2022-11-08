@@ -26,10 +26,6 @@ export default function Home() {
     key: "currentMonth",
     defaultValue: undefined,
   });
-  const [usersCategories, setUsersCategories] = useLocalStorage<string[]>({
-    key: "categories",
-    defaultValue: undefined,
-  });
   const fillDays = useCallback(() => {
     const arr: Number[] = Array.from({ length: 25 }, (_, i) => i + 1).sort(
       () => Math.random() - 0.5
@@ -40,7 +36,7 @@ export default function Home() {
   const clearData = useCallback(() => {
     localStorage.clear();
     fillDays();
-    setUsersCategories([]);
+    window.location.reload();
     toast({
       title: t("resetTitle"),
       description: t("resetBody"),
@@ -48,7 +44,7 @@ export default function Home() {
       duration: 3000,
       isClosable: true,
     });
-  }, [fillDays, toast, setUsersCategories, t]);
+  }, [fillDays, toast, t]);
 
   useEffect(() => {
     const d = new Date();
@@ -63,22 +59,11 @@ export default function Home() {
     }
   }, [fillDays, setMonth, clearData]);
 
-  const handleSwitch = (checked: boolean, switchCategory: string) => {
-    if (checked) {
-      setUsersCategories(() => [...usersCategories, switchCategory]);
-    } else {
-      const newCategories = usersCategories.filter(
-        (val) => val !== switchCategory
-      );
-      setUsersCategories(newCategories);
-    }
-  };
-
   return (
     <>
       <Header />
       <Main title={t("title")}>
-        <PreferencesCard handleSwitch={handleSwitch} />
+        <PreferencesCard />
         <Button
           onClick={() => router.push("/")}
           backgroundColor={"gray.600"}
