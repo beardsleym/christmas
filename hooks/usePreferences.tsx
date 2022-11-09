@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useToast } from "@chakra-ui/react";
 import { useLocalStorage } from "@mantine/hooks";
@@ -13,6 +13,14 @@ export const usePreferences = () => {
   });
   const [, setUsersCategories] = useLocalStorage<string[]>({
     key: "categories",
+    defaultValue: undefined,
+  });
+  const [categories] = useLocalStorage<string[]>({
+    key: "categories",
+    defaultValue: undefined,
+  });
+  const [, setMonth] = useLocalStorage<number>({
+    key: "currentMonth",
     defaultValue: undefined,
   });
 
@@ -36,5 +44,18 @@ export const usePreferences = () => {
     });
   }, [fillDays, toast, t, setUsersCategories]);
 
-  return { clearData, fillDays };
+  useEffect(() => {
+    const d = new Date();
+    const currentMonth = d.getMonth();
+    if (localStorage.getItem("daysArray") === null) {
+      fillDays();
+    }
+    if (localStorage.getItem("currentMonth") === null) {
+      setMonth(currentMonth);
+    } else if (localStorage.getItem("currentMonth") !== `${currentMonth}`) {
+      clearData();
+    }
+  }, [fillDays, setMonth, clearData]);
+
+  return { clearData, fillDays, categories, setMonth };
 };

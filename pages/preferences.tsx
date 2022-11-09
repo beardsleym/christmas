@@ -1,10 +1,8 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { GetStaticPropsContext } from "next/types";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Button, IconButton } from "@chakra-ui/react";
-import { useLocalStorage } from "@mantine/hooks";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
 import { usePreferences } from "../hooks/usePreferences";
@@ -12,29 +10,9 @@ import { LanguageSwitch } from "../components/LanguageSwitch";
 import { PreferencesCard } from "../components/PreferencesCard";
 
 export default function Home() {
-  const { clearData, fillDays } = usePreferences();
   const router = useRouter();
+  const { clearData, categories } = usePreferences();
   const t = useTranslations("Preferences");
-  const [categories] = useLocalStorage<string[]>({
-    key: "categories",
-    defaultValue: undefined,
-  });
-  const [, setMonth] = useLocalStorage<number>({
-    key: "currentMonth",
-    defaultValue: undefined,
-  });
-  useEffect(() => {
-    const d = new Date();
-    const currentMonth = d.getMonth();
-    if (localStorage.getItem("daysArray") === null) {
-      fillDays();
-    }
-    if (localStorage.getItem("currentMonth") === null) {
-      setMonth(currentMonth);
-    } else if (localStorage.getItem("currentMonth") !== `${currentMonth}`) {
-      clearData();
-    }
-  }, [fillDays, setMonth, clearData]);
 
   return (
     <>
