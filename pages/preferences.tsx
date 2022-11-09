@@ -1,55 +1,28 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { GetStaticPropsContext } from "next/types";
 import { useTranslations } from "next-intl";
-import { Button, IconButton, useToast } from "@chakra-ui/react";
+import { GetStaticPropsContext } from "next/types";
 import { DeleteIcon } from "@chakra-ui/icons";
+import { Button, IconButton } from "@chakra-ui/react";
 import { useLocalStorage } from "@mantine/hooks";
 import { Main } from "../components/Main";
-import { PreferencesCard } from "../components/PreferencesCard";
 import { Header } from "../components/Header";
+import { usePreferences } from "../hooks/usePreferences";
 import { LanguageSwitch } from "../components/LanguageSwitch";
+import { PreferencesCard } from "../components/PreferencesCard";
 
 export default function Home() {
+  const { clearData, fillDays } = usePreferences();
   const router = useRouter();
-  const toast = useToast();
   const t = useTranslations("Preferences");
-  const [value] = useLocalStorage<string[]>({
+  const [categories] = useLocalStorage<string[]>({
     key: "categories",
-    defaultValue: undefined,
-  });
-  const [, setArray] = useLocalStorage<Number[]>({
-    key: "daysArray",
     defaultValue: undefined,
   });
   const [, setMonth] = useLocalStorage<number>({
     key: "currentMonth",
     defaultValue: undefined,
   });
-  const [, setUsersCategories] = useLocalStorage<string[]>({
-    key: "categories",
-    defaultValue: undefined,
-  });
-  const fillDays = useCallback(() => {
-    const arr: Number[] = Array.from({ length: 25 }, (_, i) => i + 1).sort(
-      () => Math.random() - 0.5
-    );
-    setArray(arr);
-  }, [setArray]);
-
-  const clearData = useCallback(() => {
-    localStorage.clear();
-    fillDays();
-    setUsersCategories([]);
-    toast({
-      title: t("resetTitle"),
-      description: t("resetBody"),
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-  }, [fillDays, toast, t]);
-
   useEffect(() => {
     const d = new Date();
     const currentMonth = d.getMonth();
@@ -74,12 +47,12 @@ export default function Home() {
           color="white"
           _hover={{ backgroundColor: "gray.300", color: "gray.600" }}
           size="lg"
-          disabled={value.length < 3}
+          disabled={categories.length < 3}
         >
-          {value.length > 2
+          {categories.length > 2
             ? t("save")
-            : `${t("select")} ${3 - value.length} ${t("more")}${
-                3 - value.length > 1 && router.locale === "fr" ? "es" : ""
+            : `${t("select")} ${3 - categories.length} ${t("more")}${
+                3 - categories.length > 1 && router.locale === "fr" ? "es" : ""
               }
               `}
         </Button>
