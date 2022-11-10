@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { useLocalStorage } from "@mantine/hooks";
+import { Player } from "@lottiefiles/react-lottie-player";
 import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
 import { Header } from "../components/Header";
@@ -70,13 +71,20 @@ export default function Home() {
           </SimpleGrid>
         ) : (
           <Center h="100vh">
-            <Spinner
+            {/* <Spinner
               thickness="4px"
               speed="1s"
               emptyColor="gray.600"
               color="white"
               size="xl"
               mt={16}
+            /> */}
+            <Player
+              src="https://assets6.lottiefiles.com/private_files/lf30_unc55ntk.json"
+              className="player"
+              keepLastFrame
+              autoplay
+              loop
             />
           </Center>
         )}

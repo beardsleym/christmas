@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Image, Container, Stack, Center, Heading } from "@chakra-ui/react";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 type MainProps = {
   title?: String;
@@ -10,11 +11,18 @@ export const Main = ({ title, children }: MainProps) => (
   <Container h="2xl">
     <Stack spacing={4} mt={8}>
       <Center>
-        <Image
+        <Player
+          src="https://assets3.lottiefiles.com/packages/lf20_owc0pksu.json"
+          className="player"
+          autoplay
+          keepLastFrame
+          style={{ height: "128px", width: "128px" }}
+        />
+        {/* <Image
           src="/images/ChristmasTree.svg"
           alt="christmas-tree"
           boxSize="32"
-        />
+        /> */}
       </Center>
       <Heading
         as="h1"
