@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { useLocalStorage } from "@mantine/hooks";
+import { Player } from "@lottiefiles/react-lottie-player";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
 import { getItemsFromCategory } from "../constants/data";
@@ -77,11 +78,27 @@ export default function ID() {
 
   return (
     <>
+      <Player
+        src="https://assets2.lottiefiles.com/packages/lf20_FOeIT1.json"
+        className="player"
+        keepLastFrame
+        autoplay
+        loop
+        speed={0.25}
+        style={{
+          height: "812",
+          width: "224%",
+          zIndex: 0,
+          position: "fixed",
+          top: -50,
+        }}
+      />
       <Header />
       <Main>
         <IconButton
           as={NextLink}
           href="/"
+          scroll={false}
           aria-label="go-back"
           icon={<ChevronLeftIcon w={24} h={24} />}
           position="fixed"
