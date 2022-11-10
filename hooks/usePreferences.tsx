@@ -6,6 +6,8 @@ import { useLocalStorage } from "@mantine/hooks";
 export const usePreferences = () => {
   const toast = useToast();
   const t = useTranslations("Preferences");
+  const d = new Date();
+  const currentMonth = d.getMonth();
 
   const [, setArray] = useLocalStorage<Number[]>({
     key: "daysArray",
@@ -35,6 +37,7 @@ export const usePreferences = () => {
     localStorage.clear();
     fillDays();
     setUsersCategories([]);
+    setMonth(currentMonth);
     toast({
       title: t("resetTitle"),
       description: t("resetBody"),
@@ -45,8 +48,6 @@ export const usePreferences = () => {
   }, [fillDays, toast, t, setUsersCategories]);
 
   useEffect(() => {
-    const d = new Date();
-    const currentMonth = d.getMonth();
     if (localStorage.getItem("daysArray") === null) {
       fillDays();
     }
