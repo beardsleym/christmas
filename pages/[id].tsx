@@ -79,18 +79,18 @@ export default function ID() {
   return (
     <>
       <Player
-        src="https://assets2.lottiefiles.com/packages/lf20_FOeIT1.json"
+        src="https://assets8.lottiefiles.com/packages/lf20_Qt396e.json"
         className="player"
         keepLastFrame
         autoplay
         loop
-        speed={0.25}
+        speed={0.15}
         style={{
-          height: "812",
-          width: "224%",
-          zIndex: 0,
+          // height: "812",
+          // width: "224%",
+          zIndex: -1,
           position: "fixed",
-          top: -50,
+          top: -10,
         }}
       />
       <Header />
