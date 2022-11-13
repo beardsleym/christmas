@@ -63,7 +63,7 @@ export const homeList: string[] = [
   "Draw names and write a love note for a family member.",
   "Invite someone over for a Christmas-themed morning tea",
   "Have a living room dance party to a fun Christmas album",
-  "Have a funny Christmas photo shoot (80’s Christmas sweaters?!)",
+  "Have a funny Christmas photo shoot (80's Christmas sweaters?!)",
   "Use only Christmas mugs for all of your drinks for an entire day",
   "Get out a Christmas songbook and sing a few carols before bed time",
   "Celebrate Saint Nicolas Day (December 6th) by doing a secret act of kindness",
