@@ -47,7 +47,14 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
 
   return (
     <NextLink href={currentDay < itemDay ? "" : `/${itemDay}`} scroll={false}>
-      <Box sx={basicBoxStyles}>
+      <Box
+        sx={basicBoxStyles}
+        border="4px"
+        borderColor="black"
+        borderRadius={16}
+        padding={4}
+        filter={currentDay > itemDay ? "grayscale(1)" : ""}
+      >
         <Player
           src={animation()}
           className="player"
@@ -55,6 +62,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
           autoplay={currentDay === itemDay}
           loop
           ref={playerRef}
+          style={{ opacity: currentDay > itemDay ? "50%" : "" }}
         >
           <Heading
             size={"2xl"}
