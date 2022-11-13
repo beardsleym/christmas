@@ -81,17 +81,6 @@ export const outingsList: string[] = [
   "Attend a holiday craft bazaar with grandma",
 ];
 
-export const decoratingList: string[] = [
-  "Decorate the tree",
-  "Deck the halls with boughs of holly",
-  "String a popcorn garland for the tree",
-  "Make origami ornaments for the tree",
-  "Decorate a wreath together",
-  "Hang some mistletoe and give out kisses",
-  "Make a paper garland to hang on the tree, over a door, or in the kids bedroom",
-  "Decorate the windows with spray snow",
-];
-
 export const moviesList: string[] = [
   "Miracle on 34th Street",
   "White Christmas",

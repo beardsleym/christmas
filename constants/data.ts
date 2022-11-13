@@ -1,7 +1,6 @@
 import {
   craftList,
   kitchenList,
-  decoratingList,
   outingsList,
   homeList,
   moviesList,
@@ -10,7 +9,6 @@ import {
 import {
   craftListFR,
   kitchenListFR,
-  decoratingListFR,
   outingsListFR,
   homeListFR,
   moviesListFR,
@@ -31,7 +29,6 @@ export const categories: categoryProps[] = [
   // display on preferences page and use for logic
   { en: "Craft & Create", fr: "Travaux Manuels" },
   { en: "Kitchen", fr: "Dans la cuisine" },
-  { en: "Decorating", fr: "Décorations" },
   { en: "Outings", fr: "Sorties" },
   { en: "Fun at Home", fr: "S'amuser à la maison" },
   { en: "Christmas Movies", fr: "Films de Noël" },
@@ -44,8 +41,6 @@ const getCategoryList = (val: string, locale: string) => {
         return kitchenListFR;
       case "Outings":
         return outingsListFR;
-      case "Decorating":
-        return decoratingListFR;
       case "Christmas Movies":
         return moviesListFR;
       case "Craft & Create":
@@ -61,8 +56,6 @@ const getCategoryList = (val: string, locale: string) => {
         return kitchenList;
       case "Outings":
         return outingsList;
-      case "Decorating":
-        return decoratingList;
       case "Christmas Movies":
         return moviesList;
       case "Craft & Create":
