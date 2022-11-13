@@ -43,7 +43,11 @@ export const moviesList: string[] = [
 ];
 export const craftList: string[] = [
   "Write a Christmas card",
+  "Write the Christmas Day menu",
   "Make play dough snowmen",
+  "Make or decorate a Christmas bauble",
+  "Create a natural Christmas garland",
+  "Create placement name tags for Christas dinner",
   "Make and mail a Christmas card to a family member or friend",
   "Make a silly Christmas video to send to friends on Christmas day",
   "Make a handmade Christmas ornament for someone else in the family",
