@@ -1,5 +1,4 @@
 import { extendTheme } from "@chakra-ui/react";
-import { GeneratePrimeOptionsArrayBuffer } from "crypto";
 
 const colors = {
   primary: {

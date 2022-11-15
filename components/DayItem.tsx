@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import NextLink from "next/link";
-import { Center, Heading, Box } from "@chakra-ui/react";
+import { Heading, Box } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 type DayItemProps = {

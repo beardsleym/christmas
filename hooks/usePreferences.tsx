@@ -45,7 +45,7 @@ export const usePreferences = () => {
       duration: 3000,
       isClosable: true,
     });
-  }, [fillDays, toast, t, setUsersCategories]);
+  }, [fillDays, toast, t, setUsersCategories, currentMonth, setMonth]);
 
   useEffect(() => {
     if (localStorage.getItem("daysArray") === null) {
@@ -56,7 +56,7 @@ export const usePreferences = () => {
     } else if (localStorage.getItem("currentMonth") !== `${currentMonth}`) {
       clearData();
     }
-  }, [fillDays, setMonth, clearData]);
+  }, [fillDays, setMonth, clearData, currentMonth]);
 
   return { clearData, fillDays, categories, setMonth };
 };
