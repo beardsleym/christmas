@@ -35,14 +35,6 @@ export default function Home() {
               `}
         </Button>
       </Main>
-      <button
-        type="button"
-        onClick={() => {
-          throw new Error("Sentry Frontend Error");
-        }}
-      >
-        Throw error
-      </button>
       <IconButton
         aria-label="clear"
         icon={<DeleteIcon w={8} h={8} />}
