@@ -15,7 +15,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     justifyContent: "center",
     // paddingTop: "24",
     textAlign: "center",
-    // height: "250px",
+    height: "100%",
     // width: "264px",
     // background: `url(images/${
     //   itemDay === 25 ? "Special" : ""
