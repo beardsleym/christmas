@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import NextLink from "next/link";
 import { Heading, Flex } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { useRouter } from "next/router";
 
 type DayItemProps = {
   itemDay: Number;
@@ -9,6 +9,7 @@ type DayItemProps = {
 };
 
 export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
+  const router = useRouter();
   const basicBoxStyles = {
     display: "flex",
     alignItems: "center",
@@ -32,6 +33,9 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
   const calendarTree =
     "https://assets1.lottiefiles.com/packages/lf20_kc6glnpx.json";
 
+  const handleClick = () => {
+    if (currentDay >= itemDay) router.push(`/${itemDay}`);
+  };
   const animation = () => {
     switch (true) {
       case itemDay === 25:
@@ -48,33 +52,33 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
   };
 
   return (
-    <NextLink href={currentDay < itemDay ? "" : `/${itemDay}`} scroll={false}>
-      <Flex
-        sx={basicBoxStyles}
-        border="4px"
-        borderColor="black"
-        borderRadius={16}
-        padding={4}
-        filter={currentDay > itemDay ? "grayscale(1)" : ""}
-        flexDirection="column"
+    <Flex
+      onClick={handleClick}
+      sx={basicBoxStyles}
+      border="4px"
+      borderColor="black"
+      borderRadius={16}
+      padding={4}
+      filter={currentDay > itemDay ? "grayscale(1)" : ""}
+      flexDirection="column"
+    >
+      <Player
+        src={animation()}
+        className="player"
+        keepLastFrame
+        autoplay={currentDay === itemDay}
+        loop
+        ref={playerRef}
+        style={{ opacity: currentDay > itemDay ? "50%" : "" }}
+      />
+      <Heading
+        size={"2xl"}
+        color="white"
+        textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
       >
-        <Player
-          src={animation()}
-          className="player"
-          keepLastFrame
-          autoplay={currentDay === itemDay}
-          loop
-          ref={playerRef}
-          style={{ opacity: currentDay > itemDay ? "50%" : "" }}
-        />
-        <Heading
-          size={"2xl"}
-          color="white"
-          textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
-        >
-          {itemDay !== 25 ? itemDay.toString() : null}
-        </Heading>
-        {/* <Box
+        {itemDay !== 25 ? itemDay.toString() : null}
+      </Heading>
+      {/* <Box
           sx={basicBoxStyles}
           opacity={currentDay !== itemDay ? "30%" : "100%"}
         >
@@ -87,7 +91,6 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
             {itemDay.toString()}
           </Heading>
         </Box> */}
-      </Flex>
-    </NextLink>
+    </Flex>
   );
 };
