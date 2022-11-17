@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import NextLink from "next/link";
-import { Heading, Box } from "@chakra-ui/react";
+import { Heading, Flex } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 type DayItemProps = {
@@ -16,6 +16,8 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     // paddingTop: "24",
     textAlign: "center",
     height: "100%",
+    minHeight: 320,
+    minWidth: 320,
     // width: "264px",
     // background: `url(images/${
     //   itemDay === 25 ? "Special" : ""
@@ -47,13 +49,14 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
 
   return (
     <NextLink href={currentDay < itemDay ? "" : `/${itemDay}`} scroll={false}>
-      <Box
+      <Flex
         sx={basicBoxStyles}
         border="4px"
         borderColor="black"
         borderRadius={16}
         padding={4}
         filter={currentDay > itemDay ? "grayscale(1)" : ""}
+        flexDirection="column"
       >
         <Player
           src={animation()}
@@ -63,15 +66,14 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
           loop
           ref={playerRef}
           style={{ opacity: currentDay > itemDay ? "50%" : "" }}
+        />
+        <Heading
+          size={"2xl"}
+          color="white"
+          textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
         >
-          <Heading
-            size={"2xl"}
-            color="white"
-            textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
-          >
-            {itemDay !== 25 ? itemDay.toString() : null}
-          </Heading>
-        </Player>
+          {itemDay !== 25 ? itemDay.toString() : null}
+        </Heading>
         {/* <Box
           sx={basicBoxStyles}
           opacity={currentDay !== itemDay ? "30%" : "100%"}
@@ -85,7 +87,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
             {itemDay.toString()}
           </Heading>
         </Box> */}
-      </Box>
+      </Flex>
     </NextLink>
   );
 };
