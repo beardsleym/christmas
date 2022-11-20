@@ -55,7 +55,7 @@ export default function Home() {
     const intervalId = getCurrentDay();
     setTimeout(() => {
       setIsLoading(false);
-    }, 200);
+    }, 500);
     return () => {
       clearInterval(intervalId);
     };
