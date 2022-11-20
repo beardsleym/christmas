@@ -18,7 +18,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     textAlign: "center",
     height: "100%",
     minHeight: 320,
-    minWidth: 320,
+    // minWidth: 320,
     // width: "264px",
     // background: `url(images/${
     //   itemDay === 25 ? "Special" : ""
@@ -58,7 +58,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       border="4px"
       borderColor="black"
       borderRadius={16}
-      padding={4}
+      pb={4}
       filter={currentDay > itemDay ? "grayscale(1)" : ""}
       flexDirection="column"
     >
