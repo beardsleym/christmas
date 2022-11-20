@@ -18,11 +18,6 @@ export const Main = ({ title, children }: MainProps) => (
           keepLastFrame
           style={{ height: "128px", width: "128px" }}
         />
-        {/* <Image
-          src="/images/ChristmasTree.svg"
-          alt="christmas-tree"
-          boxSize="32"
-        /> */}
       </Center>
       <Heading
         as="h1"
