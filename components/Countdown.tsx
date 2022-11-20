@@ -1,9 +1,5 @@
-import {
-  CircularProgress,
-  CircularProgressLabel,
-  Center,
-  Text,
-} from "@chakra-ui/react";
+import { Center, Text, Heading, Box } from "@chakra-ui/react";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 let today = new Date();
 let christmasYear = today.getFullYear();
@@ -21,15 +17,25 @@ let remainingDays = Math.ceil(
 
 export const Countdown: React.FC = () => (
   <Center h="100vh" flexDirection="column">
-    <CircularProgress
-      value={(remainingDays / 365) * 100}
-      color="gray.600"
-      size="220px"
-    >
-      <CircularProgressLabel color="white">
+    <Box position="relative" textAlign="center">
+      <Player
+        src="https://assets3.lottiefiles.com/packages/lf20_i7y3y8fi.json"
+        className="player"
+        autoplay
+        loop
+        style={{ height: "256px", width: "256px" }}
+      />
+      <Heading
+        mt={4}
+        color="white"
+        fontSize="2xl"
+        position="absolute"
+        top="34%"
+        right="46%"
+      >
         {remainingDays}
-      </CircularProgressLabel>
-    </CircularProgress>
+      </Heading>
+    </Box>
     <Text mt={4} color="white" fontSize="2xl">
       day{remainingDays > 1 && "s"} till December
     </Text>
