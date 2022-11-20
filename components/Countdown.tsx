@@ -37,7 +37,10 @@ export const Countdown: React.FC = () => (
       </Heading>
     </Box>
     <Text mt={4} color="white" fontSize="2xl">
-      day{remainingDays > 1 && "s"} till December
+      Day{remainingDays > 1 && "s"} till December
+    </Text>
+    <Text mt={4} color="white" fontSize="md">
+      We&apos;ll be waiting for you here.
     </Text>
   </Center>
 );
