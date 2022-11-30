@@ -10,5 +10,10 @@
   "Info": {
     "title": "Comment ça marche?",
     "body": "Cliquer sur la maison avec date du jour et amusez-vous!"
+  },
+  "Countdown": {
+    "day": "Plus qu'un",
+    "december": "jour à attendre",
+    "body": "Nous vous attendons ici."
   }
 }

@@ -10,5 +10,10 @@
   "Info": {
     "title": "How does it work?",
     "body": "Click on today's date and have fun!"
+  },
+  "Countdown": {
+    "day": "Day",
+    "december": "till December",
+    "body": "We'll be waiting for you here."
   }
 }
