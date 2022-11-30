@@ -4,6 +4,10 @@ export const Header: React.FC = () => (
   <Head>
     <title>Christmas Advent Calendar</title>
     <link rel="icon" href="images/favicon.ico" />
-    <meta name="description" content="christmas advent calendar" />
+    <meta
+      name="description"
+      content="Christmas advent calendar activities for you to enjoy."
+    />
+    <meta property="og:image" content="https://xmascal.netlify.com/tree.png" />
   </Head>
 );
