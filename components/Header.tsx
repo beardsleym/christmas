@@ -10,7 +10,7 @@ export const Header: React.FC = () => (
     />
     <meta
       property="og:image"
-      content="https://xmascal.netlify.com/images/tree.png"
+      content="https://xmascal.netlify.com/images/family.png"
     />
   </Head>
 );
