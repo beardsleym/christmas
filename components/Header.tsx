@@ -8,6 +8,9 @@ export const Header: React.FC = () => (
       name="description"
       content="Christmas advent calendar activities for you to enjoy."
     />
-    <meta property="og:image" content="https://xmascal.netlify.com/tree.png" />
+    <meta
+      property="og:image"
+      content="https://xmascal.netlify.com/images/tree.png"
+    />
   </Head>
 );
