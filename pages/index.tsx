@@ -15,10 +15,13 @@ import { useLocalStorage } from "@mantine/hooks";
 import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
 import { Header } from "../components/Header";
+import { Countdown } from "../components/Countdown";
 
 export default function Home() {
   const router = useRouter();
   const [currentDay, setCurrentDay] = useState(0);
+  const [isDecember, setIsDecember] = useState(false);
+
   const [value] = useLocalStorage<string[]>({
     key: "categories",
     defaultValue: undefined,
@@ -41,6 +44,7 @@ export default function Home() {
   useEffect(() => {
     const d = new Date();
     const currentMonth = d.getMonth();
+    currentMonth === 11 ? setIsDecember(true) : setIsDecember(false);
     if (
       localStorage.getItem("categories") === null ||
       localStorage.getItem("daysArray") === null ||
@@ -56,50 +60,56 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <Container h="2xl" maxW="4xl">
-        {daysArray ? (
-          <SimpleGrid
-            columns={[1, null, 2, 3]}
-            spacingX={4}
-            spacingY={8}
-            py={8}
-          >
-            {daysArray.map((day, i) => (
-              <DayItem key={i} itemDay={day} currentDay={currentDay} />
-            ))}
-          </SimpleGrid>
-        ) : (
-          <Center h="100vh">
-            <Spinner
-              thickness="4px"
-              speed="1s"
-              emptyColor="gray.600"
-              color="white"
-              size="xl"
-              mt={16}
-            />
-            {/* <Player
+      <>
+        <Header />
+        {isDecember ? (
+          <Container h="2xl" maxW="4xl">
+            {daysArray ? (
+              <SimpleGrid
+                columns={[1, null, 2, 3]}
+                spacingX={4}
+                spacingY={8}
+                py={8}
+              >
+                {daysArray.map((day, i) => (
+                  <DayItem key={i} itemDay={day} currentDay={currentDay} />
+                ))}
+              </SimpleGrid>
+            ) : (
+              <Center h="100vh">
+                <Spinner
+                  thickness="4px"
+                  speed="1s"
+                  emptyColor="gray.600"
+                  color="white"
+                  size="xl"
+                  mt={16}
+                />
+                {/* <Player
               src="https://assets6.lottiefiles.com/private_files/lf30_unc55ntk.json"
               className="player"
               keepLastFrame
               autoplay
               loop
             /> */}
-          </Center>
+              </Center>
+            )}
+          </Container>
+        ) : (
+          <Countdown />
         )}
-      </Container>
-      <IconButton
-        as={NextLink}
-        href="/preferences"
-        aria-label="preferences"
-        icon={<SettingsIcon w={8} h={8} />}
-        position="fixed"
-        bottom="30"
-        left="30"
-        colorScheme="transparent"
-      />
-      <Info />
+        <IconButton
+          as={NextLink}
+          href="/preferences"
+          aria-label="preferences"
+          icon={<SettingsIcon w={8} h={8} />}
+          position="fixed"
+          bottom="30"
+          left="30"
+          colorScheme="transparent"
+        />
+        <Info />
+      </>
     </>
   );
 }
