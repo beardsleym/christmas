@@ -72,7 +72,7 @@ export default function Home() {
         ) : (
           <>
             {isDecember ? (
-              <Box maxW="4xl" pt={[2, 8, 16, 24]} pb={24} px={[2, 8, 16, 24]}>
+              <Box maxW="4xl" pt={[2, 8, 16, 24]} px={[2, 8, 16, 24]} mb={24}>
                 {daysArray && (
                   <SimpleGrid
                     columns={[4, 5, 6]}
