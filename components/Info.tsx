@@ -25,7 +25,7 @@ export const Info = () => {
         aria-label="info"
         icon={<InfoOutlineIcon w={8} h={8} />}
         position="fixed"
-        top="30"
+        bottom="30"
         right="30"
         colorScheme="transparent"
       />

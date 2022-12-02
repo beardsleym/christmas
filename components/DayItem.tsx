@@ -17,7 +17,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     // paddingTop: "24",
     textAlign: "center",
     height: "100%",
-    minHeight: 320,
+    minHeight: 134,
     // minWidth: 320,
     // width: "264px",
     // background: `url(images/${
@@ -51,16 +51,40 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     }
   };
 
+  const textAndBorderColor = () => {
+    switch (true) {
+      case currentDay > itemDay:
+        return "gray.500";
+      case currentDay < itemDay:
+        return "gray.900";
+      default:
+        return "white";
+        break;
+    }
+  };
+  const cardBackgroundColor = () => {
+    switch (true) {
+      case currentDay > itemDay:
+        return "gray.600";
+      case currentDay < itemDay:
+        return "red.400";
+      default:
+        return "green.600";
+        break;
+    }
+  };
+
   return (
     <Flex
       onClick={handleClick}
       sx={basicBoxStyles}
-      border="4px"
-      borderColor="black"
+      border="2px"
+      borderColor={textAndBorderColor()}
       borderRadius={16}
-      pb={4}
-      filter={currentDay > itemDay ? "grayscale(1)" : ""}
+      pb={0}
+      // filter={currentDay > itemDay ? "grayscale(1)" : ""}
       flexDirection="column"
+      backgroundColor={cardBackgroundColor()}
     >
       <Player
         src={animation()}
@@ -73,7 +97,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       />
       <Heading
         size={"2xl"}
-        color="white"
+        color={textAndBorderColor()}
         textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
       >
         {itemDay !== 25 ? itemDay.toString() : null}
