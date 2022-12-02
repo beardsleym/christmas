@@ -73,20 +73,22 @@ export default function Home() {
               emptyColor="gray.600"
               color="white"
               size="xl"
-              mt={16}
             />
           </Center>
         ) : (
           <>
             {isDecember ? (
-              <Container h="2xl" maxW="4xl" px={2}>
+              <Container
+                maxW="4xl"
+                pt={[2, 8, 16, 24]}
+                pb={24}
+                px={[2, 8, 16, 24]}
+              >
                 {daysArray && (
                   <SimpleGrid
                     columns={[4, 5, 6]}
-                    spacingX={1}
-                    spacingY={1}
-                    pt={[2]}
-                    pb={24}
+                    spacingX={[1, 2, 4]}
+                    spacingY={[1, 2, 4]}
                   >
                     {daysArray.map((day, i) => (
                       <DayItem key={i} itemDay={day} currentDay={currentDay} />
