@@ -2,13 +2,7 @@ import { useEffect, useState } from "react";
 import { GetStaticPropsContext } from "next/types";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
-import {
-  Container,
-  IconButton,
-  SimpleGrid,
-  Center,
-  Spinner,
-} from "@chakra-ui/react";
+import { Box, IconButton, SimpleGrid, Center, Spinner } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { useLocalStorage } from "@mantine/hooks";
 import { DayItem } from "../components/DayItem";
@@ -78,12 +72,7 @@ export default function Home() {
         ) : (
           <>
             {isDecember ? (
-              <Container
-                maxW="4xl"
-                pt={[2, 8, 16, 24]}
-                pb={24}
-                px={[2, 8, 16, 24]}
-              >
+              <Box maxW="4xl" pt={[2, 8, 16, 24]} pb={24} px={[2, 8, 16, 24]}>
                 {daysArray && (
                   <SimpleGrid
                     columns={[4, 5, 6]}
@@ -95,7 +84,7 @@ export default function Home() {
                     ))}
                   </SimpleGrid>
                 )}
-              </Container>
+              </Box>
             ) : (
               <Countdown />
             )}
