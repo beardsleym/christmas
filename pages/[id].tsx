@@ -106,7 +106,7 @@ export default function ID() {
           left="30"
           colorScheme="transparent"
         />
-        <Center h="50vh">
+        <Center>
           <Stack gap={8} maxW={"md"}>
             {item?.category ? (
               <Center>
