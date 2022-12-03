@@ -1,29 +1,26 @@
 import { useRef } from "react";
-import { Heading, Flex } from "@chakra-ui/react";
+import { Heading, Flex, Text } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useRouter } from "next/router";
+import { useLocalStorage } from "@mantine/hooks";
+import { getEmoji } from "../constants/data";
 
 type DayItemProps = {
   itemDay: Number;
   currentDay: Number;
 };
 
+type itemProps = {
+  category?: string;
+  text?: string;
+  emoji?: string;
+};
+
 export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
   const router = useRouter();
-  const basicBoxStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    // paddingTop: "24",
-    textAlign: "center",
-    // height: "100%",
-    // minHeight: "8rem",
-    // minWidth: 320,
-    // width: "264px",
-    // background: `url(images/${
-    //   itemDay === 25 ? "Special" : ""
-    // }House.svg) center/cover no-repeat`,
-  };
+  const [event] = useLocalStorage<itemProps>({
+    key: `${itemDay}`,
+  });
   const playerRef = useRef<Player>(null);
 
   const emptyTree =
@@ -75,8 +72,8 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
   return (
     <Flex
       onClick={handleClick}
-      sx={basicBoxStyles}
       border="2px"
+      alignItems="center"
       borderColor={textAndBorderColor()}
       borderRadius={16}
       pb={[1, 2]}
@@ -93,21 +90,18 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
         style={{ opacity: currentDay > itemDay ? "50%" : "" }}
       />
       <Heading size={"xl"} lineHeight={0.8} color={textAndBorderColor()}>
-        {itemDay !== 25 ? itemDay.toString() : null}
+        {itemDay !== 25 ? itemDay.toString() : null}{" "}
       </Heading>
-      {/* <Box
-          sx={basicBoxStyles}
-          opacity={currentDay !== itemDay ? "30%" : "100%"}
+      {currentDay >= itemDay && event.category ? (
+        <Text
+          fontSize="xs"
+          position="absolute"
+          ml={10}
+          filter={currentDay === itemDay ? undefined : "grayscale(0.5)"}
         >
-          <Heading
-            pr={4}
-            size={"4xl"}
-            color="white"
-            textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
-          >
-            {itemDay.toString()}
-          </Heading>
-        </Box> */}
+          {getEmoji(event.category)}
+        </Text>
+      ) : null}
     </Flex>
   );
 };

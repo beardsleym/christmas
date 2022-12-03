@@ -14,7 +14,7 @@ import {
   moviesListFR,
 } from "./fr";
 
-interface itemProps {
+export interface itemProps {
   text: string;
   category: string;
 }
@@ -22,17 +22,23 @@ interface itemProps {
 export interface categoryProps {
   en: string;
   fr: string;
+  emoji: string;
   [key: string]: string;
 }
 
 export const categories: categoryProps[] = [
   // display on preferences page and use for logic
-  { en: "Craft & Create", fr: "Travaux Manuels" },
-  { en: "Kitchen", fr: "Dans la cuisine" },
-  { en: "Outings", fr: "Sorties" },
-  { en: "Fun at Home", fr: "S'amuser à la maison" },
-  { en: "Christmas Movies", fr: "Films de Noël" },
+  { en: "Craft & Create", fr: "Travaux Manuels", emoji: "🧶" },
+  { en: "Kitchen", fr: "Dans la cuisine", emoji: "🍪" },
+  { en: "Outings", fr: "Sorties", emoji: "👪" },
+  { en: "Fun at Home", fr: "S'amuser à la maison", emoji: "🎁" },
+  { en: "Christmas Movies", fr: "Films de Noël", emoji: "🍿" },
 ];
+
+export const getEmoji = (category: string) => {
+  const cat = categories.find((i) => i.en === category || i.fr === category);
+  return cat?.emoji;
+};
 
 const getCategoryList = (val: string, locale: string) => {
   if (locale === "fr") {
@@ -72,9 +78,9 @@ export const getItemsFromCategory = (category: string, locale: string) => {
   const categoryList = getCategoryList(category, locale);
   if (categoryList?.length) {
     let newCategory: string = category;
+    const cat = categories.find((i) => i.en === category);
     if (locale === "fr") {
       // get french category
-      const cat = categories.find((i) => i.en === category);
       newCategory = cat?.fr || "";
     }
     return categoryList.map((i) => {

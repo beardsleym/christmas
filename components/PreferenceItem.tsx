@@ -28,7 +28,7 @@ export const PreferenceItem = ({ category }: PreferenceItemProps) => {
   return (
     <FormControl display="flex" alignItems="center">
       <FormLabel htmlFor="preference-item" mb="0">
-        {category[locale ?? "en"]}
+        {category.emoji} {category[locale ?? "en"]}
       </FormLabel>
       <Switch
         id={`${category.en}`}

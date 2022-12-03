@@ -14,18 +14,22 @@ import { useLocalStorage } from "@mantine/hooks";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
-import { getItemsFromCategory } from "../constants/data";
+import { getItemsFromCategory, getEmoji } from "../constants/data";
 
 type itemProps = {
   category?: string;
   text?: string;
+  // emoji?: string;
 };
 
 export default function ID() {
   const router = useRouter();
   const { id } = router.query;
   const locale = router.locale;
-  const [item, setItem] = useState<itemProps>({ category: "", text: "" });
+  const [item, setItem] = useState<itemProps>({
+    category: "",
+    text: "",
+  });
   const [value] = useLocalStorage<string[]>({
     key: "categories",
   });
@@ -86,8 +90,6 @@ export default function ID() {
         loop
         speed={0.15}
         style={{
-          // height: "812",
-          // width: "224%",
           zIndex: -1,
           position: "fixed",
           top: -10,
@@ -111,7 +113,7 @@ export default function ID() {
             {item?.category ? (
               <Center>
                 <Tag size={"lg"} variant="solid" backgroundColor="grey.600">
-                  {item?.category?.toUpperCase()}
+                  {getEmoji(item.category)} {item?.category?.toUpperCase()}
                 </Tag>
               </Center>
             ) : (
