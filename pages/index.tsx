@@ -72,19 +72,25 @@ export default function Home() {
         ) : (
           <>
             {isDecember ? (
-              <Box maxW="4xl" pt={[2, 8, 16, 24]} px={[2, 8, 16, 24]} mb={24}>
-                {daysArray && (
-                  <SimpleGrid
-                    columns={[4, 5, 6]}
-                    spacingX={[1, 2, 4]}
-                    spacingY={[1, 2, 4]}
-                  >
-                    {daysArray.map((day, i) => (
-                      <DayItem key={i} itemDay={day} currentDay={currentDay} />
-                    ))}
-                  </SimpleGrid>
-                )}
-              </Box>
+              <Center>
+                <Box maxW="4xl" pt={[2, 8, 16, 24]} px={[2, 8, 16, 24]} mb={24}>
+                  {daysArray && (
+                    <SimpleGrid
+                      columns={[4, 5, 6]}
+                      spacingX={[1, 2, 4]}
+                      spacingY={[1, 2, 4]}
+                    >
+                      {daysArray.map((day, i) => (
+                        <DayItem
+                          key={i}
+                          itemDay={day}
+                          currentDay={currentDay}
+                        />
+                      ))}
+                    </SimpleGrid>
+                  )}
+                </Box>
+              </Center>
             ) : (
               <Countdown />
             )}
