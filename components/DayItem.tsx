@@ -74,11 +74,13 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       onClick={handleClick}
       border="2px"
       alignItems="center"
+      justifyContent="center"
       borderColor={textAndBorderColor()}
       borderRadius={16}
       pb={[1, 2]}
       flexDirection="column"
       backgroundColor={cardBackgroundColor()}
+      minHeight="6rem"
     >
       <Player
         src={animation()}
@@ -97,6 +99,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
           fontSize="xs"
           position="absolute"
           ml={10}
+          mb={16}
           filter={currentDay === itemDay ? undefined : "grayscale(0.5)"}
         >
           {getEmoji(event.category)}
