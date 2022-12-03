@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import {
@@ -15,11 +15,11 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
 import { getItemsFromCategory, getEmoji } from "../constants/data";
+import { Skips } from "../components/Skips";
 
 type itemProps = {
   category?: string;
   text?: string;
-  // emoji?: string;
 };
 
 export default function ID() {
@@ -29,6 +29,11 @@ export default function ID() {
   const [item, setItem] = useState<itemProps>({
     category: "",
     text: "",
+  });
+  const [skippedItems, setSkippedItems] = useLocalStorage<
+    itemProps[] | undefined
+  >({
+    key: "skippedItems",
   });
   const [value] = useLocalStorage<string[]>({
     key: "categories",
@@ -44,9 +49,35 @@ export default function ID() {
     );
   }
 
+  const getAndSetItem = useCallback(() => {
+    let arr: object[] = []; // temp array
+    // Get used items
+    const usedItems: itemProps[] = [];
+    if (skippedItems)
+      skippedItems?.forEach((skippedItem) => {
+        usedItems.push(skippedItem);
+      });
+    for (let i = 0; i < 31; i++) {
+      const usedItem = JSON.parse(localStorage.getItem(i.toString()) || "{}");
+      if (usedItem.text) {
+        usedItems.push(usedItem);
+      }
+    }
+    // categories
+    value.forEach((category) => {
+      // all responses
+      arr = arr.concat(getItemsFromCategory(category, locale || "en"));
+    });
+    const diff = getDifference(arr, usedItems);
+    const categoryItem: itemProps =
+      diff[Math.floor(Math.random() * diff.length)];
+    setItem(categoryItem);
+    if (categoryItem) setEvent(categoryItem);
+  }, [locale, setEvent, value, skippedItems]);
+
   useEffect(() => {
     if (value.length) {
-      let arr: object[] = []; // temp array
+      // let arr: object[] = []; // temp array
       if (localStorage.getItem("categories") !== null && id !== undefined) {
         // Already visited
         if (localStorage.getItem(`${id}`)) {
@@ -55,30 +86,20 @@ export default function ID() {
           );
           setItem(categoryId);
         } else {
-          // Get used items
-          const usedItems: itemProps[] = [];
-          for (let i = 0; i < 31; i++) {
-            const usedItem = JSON.parse(
-              localStorage.getItem(i.toString()) || "{}"
-            );
-            if (usedItem.text) {
-              usedItems.push(usedItem);
-            }
-          }
-          // categories
-          value.forEach((category) => {
-            // all responses
-            arr = arr.concat(getItemsFromCategory(category, locale || "en"));
-          });
-          const diff = getDifference(arr, usedItems);
-          const categoryItem: itemProps =
-            diff[Math.floor(Math.random() * diff.length)];
-          setItem(categoryItem);
-          if (categoryItem) setEvent(categoryItem);
+          getAndSetItem();
         }
       }
     }
-  }, [value, setEvent, event, id, locale]);
+  }, [value, setEvent, event, id, locale, getAndSetItem]);
+
+  const skipItem = () => {
+    if (skippedItems !== undefined) {
+      setSkippedItems(() => [...skippedItems, event]);
+    } else {
+      setSkippedItems([event]);
+    }
+    getAndSetItem();
+  };
 
   return (
     <>
@@ -129,6 +150,7 @@ export default function ID() {
             <Heading as="h3" size={"lg"} color="white" textAlign={"center"}>
               {item?.text}
             </Heading>
+            <Skips skippedItems={skippedItems} skipItem={skipItem} />
           </Stack>
         </Center>
       </Main>
