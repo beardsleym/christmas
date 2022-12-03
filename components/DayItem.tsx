@@ -83,15 +83,17 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       minHeight="6rem"
     >
       <Box position="relative">
-        <Player
-          src={animation()}
-          className="player"
-          keepLastFrame
-          autoplay={currentDay === itemDay}
-          loop
-          ref={playerRef}
-          style={{ opacity: currentDay > itemDay ? "50%" : "" }}
-        />
+        <Box minHeight={"5rem"} minWidth={"3rem"}>
+          <Player
+            src={animation()}
+            className="player"
+            keepLastFrame
+            autoplay={currentDay === itemDay}
+            loop
+            ref={playerRef}
+            style={{ opacity: currentDay > itemDay ? "50%" : "" }}
+          />
+        </Box>
         <Heading
           size={"xl"}
           lineHeight={0.8}
