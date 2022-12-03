@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Heading, Flex, Text } from "@chakra-ui/react";
+import { Heading, Flex, Text, Box } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useRouter } from "next/router";
 import { useLocalStorage } from "@mantine/hooks";
@@ -82,29 +82,36 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       backgroundColor={cardBackgroundColor()}
       minHeight="6rem"
     >
-      <Player
-        src={animation()}
-        className="player"
-        keepLastFrame
-        autoplay={currentDay === itemDay}
-        loop
-        ref={playerRef}
-        style={{ opacity: currentDay > itemDay ? "50%" : "" }}
-      />
-      <Heading size={"xl"} lineHeight={0.8} color={textAndBorderColor()}>
-        {itemDay !== 25 ? itemDay.toString() : null}{" "}
-      </Heading>
-      {currentDay >= itemDay && event.category ? (
-        <Text
-          fontSize="xs"
-          position="absolute"
-          ml={10}
-          mb={16}
-          filter={currentDay === itemDay ? undefined : "grayscale(0.5)"}
+      <Box position="relative">
+        <Player
+          src={animation()}
+          className="player"
+          keepLastFrame
+          autoplay={currentDay === itemDay}
+          loop
+          ref={playerRef}
+          style={{ opacity: currentDay > itemDay ? "50%" : "" }}
+        />
+        <Heading
+          size={"xl"}
+          lineHeight={0.8}
+          color={textAndBorderColor()}
+          textAlign="center"
         >
-          {getEmoji(event.category)}
-        </Text>
-      ) : null}
+          {itemDay !== 25 ? itemDay.toString() : null}{" "}
+        </Heading>
+        {currentDay >= itemDay && event.category ? (
+          <Text
+            fontSize="xs"
+            position="absolute"
+            top={2}
+            right={2}
+            filter={currentDay === itemDay ? undefined : "grayscale(0.5)"}
+          >
+            {getEmoji(event.category)}
+          </Text>
+        ) : null}
+      </Box>
     </Flex>
   );
 };
