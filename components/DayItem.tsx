@@ -16,8 +16,8 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     justifyContent: "center",
     // paddingTop: "24",
     textAlign: "center",
-    height: "100%",
-    minHeight: 134,
+    // height: "100%",
+    // minHeight: "8rem",
     // minWidth: 320,
     // width: "264px",
     // background: `url(images/${
@@ -59,7 +59,6 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
         return "gray.900";
       default:
         return "white";
-        break;
     }
   };
   const cardBackgroundColor = () => {
@@ -70,7 +69,6 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
         return "red.400";
       default:
         return "green.600";
-        break;
     }
   };
 
@@ -81,8 +79,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       border="2px"
       borderColor={textAndBorderColor()}
       borderRadius={16}
-      pb={0}
-      // filter={currentDay > itemDay ? "grayscale(1)" : ""}
+      pb={[1, 2]}
       flexDirection="column"
       backgroundColor={cardBackgroundColor()}
     >
@@ -95,11 +92,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
         ref={playerRef}
         style={{ opacity: currentDay > itemDay ? "50%" : "" }}
       />
-      <Heading
-        size={"2xl"}
-        color={textAndBorderColor()}
-        textShadow={itemDay === 25 ? "#000 1px 0 30px" : ""}
-      >
+      <Heading size={"xl"} lineHeight={0.8} color={textAndBorderColor()}>
         {itemDay !== 25 ? itemDay.toString() : null}
       </Heading>
       {/* <Box
