@@ -8,7 +8,7 @@ import { useLocalStorage } from "@mantine/hooks";
 import { DayItem } from "../components/DayItem";
 import { Info } from "../components/Info";
 import { Header } from "../components/Header";
-import { Countdown } from "../components/Countdown";
+import { Countdown } from "../features/countdown/Countdown";
 
 export default function Home() {
   const router = useRouter();
@@ -115,7 +115,7 @@ export default function Home() {
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      messages: (await import(`../messages/${locale}.json`)).default,
+      messages: (await import(`features/i18n/messages/${locale}.json`)).default,
     },
   };
 }

@@ -5,9 +5,9 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import { Button, IconButton } from "@chakra-ui/react";
 import { Main } from "../components/Main";
 import { Header } from "../components/Header";
-import { usePreferences } from "../hooks/usePreferences";
-import { LanguageSwitch } from "../components/LanguageSwitch";
-import { PreferencesCard } from "../components/PreferencesCard";
+import { usePreferences } from "../features/preferences/hooks/usePreferences";
+import { LanguageSwitch } from "../features/preferences/components/LanguageSwitch";
+import { PreferencesCard } from "../features/preferences/components/PreferencesCard";
 
 export default function Home() {
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function Home() {
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      messages: (await import(`../messages/${locale}.json`)).default,
+      messages: (await import(`features/i18n/messages/${locale}.json`)).default,
     },
   };
 }

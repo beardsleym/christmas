@@ -1,5 +1,5 @@
 import { Center, Stack } from "@chakra-ui/react";
-import { categories } from "../constants/data";
+import { categories } from "../../../constants/data";
 import PreferenceItem from "./PreferenceItem";
 
 export const PreferencesCard = () => (
