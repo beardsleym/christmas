@@ -12,10 +12,10 @@ import {
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { useLocalStorage } from "@mantine/hooks";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { Main } from "../components/Main";
-import { Header } from "../components/Header";
-import { getItemsFromCategory, getEmoji } from "../constants/data";
-import { Skips } from "../components/Skips";
+import { Title } from "components/Title";
+import { Header } from "components/Header";
+import { getItemsFromCategory, getEmoji } from "data/data";
+import { Skips } from "features/item";
 
 type itemProps = {
   category?: string;
@@ -117,7 +117,7 @@ export default function ID() {
         }}
       />
       <Header />
-      <Main>
+      <Title>
         <IconButton
           as={NextLink}
           href="/"
@@ -153,7 +153,7 @@ export default function ID() {
             <Skips skippedItems={skippedItems} skipItem={skipItem} />
           </Stack>
         </Center>
-      </Main>
+      </Title>
     </>
   );
 }

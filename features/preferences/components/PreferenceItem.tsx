@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
 import { useLocalStorage } from "@mantine/hooks";
-import { categoryProps } from "../../../constants/data";
+import { categoryProps } from "data/data";
 
 type PreferenceItemProps = {
   category: categoryProps;

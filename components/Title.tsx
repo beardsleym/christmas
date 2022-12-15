@@ -2,12 +2,12 @@ import { ReactNode } from "react";
 import { Image, Container, Stack, Center, Heading } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-type MainProps = {
+type TitleProps = {
   title?: String;
   children: ReactNode;
 };
 
-export const Main = ({ title, children }: MainProps) => (
+export const Title = ({ title, children }: TitleProps) => (
   <Container h="2xl">
     <Stack spacing={4} mt={8}>
       <Center>

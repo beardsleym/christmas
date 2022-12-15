@@ -3,11 +3,13 @@ import { useTranslations } from "next-intl";
 import { GetStaticPropsContext } from "next/types";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Button, IconButton } from "@chakra-ui/react";
-import { Main } from "../components/Main";
-import { Header } from "../components/Header";
-import { usePreferences } from "../features/preferences/hooks/usePreferences";
-import { LanguageSwitch } from "../features/preferences/components/LanguageSwitch";
-import { PreferencesCard } from "../features/preferences/components/PreferencesCard";
+import { Title } from "components/Title";
+import { Header } from "components/Header";
+import {
+  usePreferences,
+  LanguageSwitch,
+  PreferencesCard,
+} from "features/preferences";
 
 export default function Home() {
   const router = useRouter();
@@ -17,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Main title={t("title")}>
+      <Title title={t("title")}>
         <PreferencesCard />
         <Button
           onClick={() => router.push("/")}
@@ -34,7 +36,7 @@ export default function Home() {
               }
               `}
         </Button>
-      </Main>
+      </Title>
       <IconButton
         aria-label="clear"
         icon={<DeleteIcon w={8} h={8} />}

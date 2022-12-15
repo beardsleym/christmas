@@ -3,7 +3,7 @@ import { Heading, Flex, Text, Box } from "@chakra-ui/react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useRouter } from "next/router";
 import { useLocalStorage } from "@mantine/hooks";
-import { getEmoji } from "../constants/data";
+import { getEmoji } from "data/data";
 
 type DayItemProps = {
   itemDay: Number;
@@ -83,7 +83,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       minHeight="6rem"
     >
       <Box position="relative">
-        <Box minHeight={"5rem"} minWidth={"3rem"}>
+        <Box minHeight={"5rem"} style={{ aspectRatio: 1 / 1 }}>
           <Player
             src={animation()}
             className="player"

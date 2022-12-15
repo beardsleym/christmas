@@ -5,10 +5,9 @@ import NextLink from "next/link";
 import { Box, IconButton, SimpleGrid, Center, Spinner } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { useLocalStorage } from "@mantine/hooks";
-import { DayItem } from "../components/DayItem";
-import { Info } from "../components/Info";
-import { Header } from "../components/Header";
-import { Countdown } from "../features/countdown/Countdown";
+import { DayItem, Info } from "features/main";
+import { Header } from "components/Header";
+import { Countdown } from "@/features/countdown";
 
 export default function Home() {
   const router = useRouter();
