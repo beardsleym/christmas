@@ -1,0 +1,19 @@
+{
+  "Preferences": {
+    "title": "Preferencias",
+    "save": "Guardar",
+    "select": "Seleccionar más",
+    "more": "opción",
+    "resetTitle": "Reiniciar",
+    "resetBody": "Tus datos han sido restablecidos."
+  },
+  "Info": {
+    "title": "¿Cómo funciona?",
+    "body": "¡Haz clic en la casa con la fecha de hoy y diviértete!"
+  },
+  "Countdown": {
+    "day": "Solo queda un",
+    "december": "día para esperar",
+    "body": "Te esperamos aquí."
+  }
+}
