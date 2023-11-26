@@ -22,6 +22,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     key: `${itemDay}`,
   });
   const playerRef = useRef<Player>(null);
+  const isLookedAt = !!localStorage.getItem(itemDay.toString());
 
   const emptyTree =
     "https://assets9.lottiefiles.com/packages/lf20_ktwecrhe.json";
@@ -50,6 +51,8 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
 
   const textAndBorderColor = () => {
     switch (true) {
+      case isLookedAt:
+        return "white";
       case currentDay > itemDay:
         return "gray.500";
       case currentDay < itemDay:
@@ -60,6 +63,8 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
   };
   const cardBackgroundColor = () => {
     switch (true) {
+      case isLookedAt:
+        return "green.600";
       case currentDay > itemDay:
         return "gray.600";
       case currentDay < itemDay:
