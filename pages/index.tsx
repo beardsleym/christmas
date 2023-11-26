@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import { useEffect, useState } from "react";
 import { GetStaticPropsContext } from "next/types";
 import { useRouter } from "next/router";

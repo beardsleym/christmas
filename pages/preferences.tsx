@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { GetStaticPropsContext } from "next/types";

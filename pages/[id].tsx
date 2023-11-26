@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import { useEffect, useState, useCallback } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
