@@ -24,7 +24,7 @@ export default function Home() {
   });
 
   const getCurrentDay = () => {
-    const date = new Date("December 1, 2020 00:00:00");
+    const date = new Date("December 12, 2020 00:00:00");
     const day = date.getDate();
     setCurrentDay(day);
     const intervalId = setInterval(() => {
