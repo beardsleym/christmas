@@ -49,6 +49,19 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
     }
   };
 
+  const isDisabled = () => {
+    switch (true) {
+      case currentDay > itemDay:
+        return false;
+      case currentDay < itemDay:
+        return true;
+      case currentDay === itemDay:
+        return false;
+      default:
+        return false;
+    }
+  };
+
   const textAndBorderColor = () => {
     switch (true) {
       case isLookedAt:
@@ -86,6 +99,7 @@ export const DayItem = ({ itemDay, currentDay }: DayItemProps) => {
       flexDirection="column"
       backgroundColor={cardBackgroundColor()}
       minHeight="6rem"
+      cursor={isDisabled() ? "not-allowed" : "pointer"}
     >
       <Box position="relative">
         <Box minHeight={"5rem"} style={{ aspectRatio: 1 / 1 }}>
