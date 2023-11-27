@@ -1,4 +1,3 @@
-export const runtime = "edge";
 import { useEffect, useState, useCallback } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -151,7 +150,8 @@ export default function ID() {
             <Heading as="h3" size={"lg"} color="white" textAlign={"center"}>
               {item?.text}
             </Heading>
-            <Skips skippedItems={skippedItems} skipItem={skipItem} />
+            {/* DISABLED AS ONLY 25 ITEMS IN EACH CATEGORY */}
+            {/* <Skips skippedItems={skippedItems} skipItem={skipItem} /> */}
           </Stack>
         </Center>
       </Title>

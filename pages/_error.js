@@ -1,4 +1,3 @@
-export const runtime = "edge";
 import NextErrorComponent from "next/error";
 
 import * as Sentry from "@sentry/nextjs";
