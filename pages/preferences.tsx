@@ -1,4 +1,3 @@
-export const runtime = "edge";
 import { useRouter } from "next/router";
 import { useTranslations } from "next-intl";
 import { GetStaticPropsContext } from "next/types";
@@ -28,14 +27,9 @@ export default function Home() {
           color="white"
           _hover={{ backgroundColor: "gray.300", color: "gray.600" }}
           size="lg"
-          disabled={categories.length < 3}
+          disabled={categories.length < 1}
         >
-          {categories.length > 2
-            ? t("save")
-            : `${t("select")} ${3 - categories.length} ${t("more")}${
-                3 - categories.length > 1 && router.locale === "fr" ? "es" : ""
-              }
-              `}
+          {t("save")}
         </Button>
       </Title>
       <IconButton
