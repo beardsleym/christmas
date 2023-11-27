@@ -1,16 +1,16 @@
 import {
-  craftList,
+  craftsList,
   kitchenList,
   outingsList,
-  homeList,
+  hyggeList,
   moviesList,
 } from "./en";
 
 import {
-  craftListFR,
+  craftsListFR,
   kitchenListFR,
   outingsListFR,
-  homeListFR,
+  hyggeListFR,
   moviesListFR,
 } from "./fr";
 
@@ -31,7 +31,7 @@ export const categories: categoryProps[] = [
   { en: "Craft & Create", fr: "Travaux Manuels", emoji: "🧶" },
   { en: "Kitchen", fr: "Dans la cuisine", emoji: "🍪" },
   { en: "Outings", fr: "Sorties", emoji: "👪" },
-  { en: "Fun at Home", fr: "S'amuser à la maison", emoji: "🎁" },
+  { en: "Hygge", fr: "Hygge", emoji: "🎁" },
   { en: "Christmas Movies", fr: "Films de Noël", emoji: "🍿" },
 ];
 
@@ -50,9 +50,9 @@ const getCategoryList = (val: string, locale: string) => {
       case "Christmas Movies":
         return moviesListFR;
       case "Craft & Create":
-        return craftListFR;
-      case "Fun at Home":
-        return homeListFR;
+        return craftsListFR;
+      case "Hygge":
+        return hyggeListFR;
       default:
         return [];
     }
@@ -65,9 +65,9 @@ const getCategoryList = (val: string, locale: string) => {
       case "Christmas Movies":
         return moviesList;
       case "Craft & Create":
-        return craftList;
-      case "Fun at Home":
-        return homeList;
+        return craftsList;
+      case "Hygge":
+        return hyggeList;
       default:
         return [];
     }
