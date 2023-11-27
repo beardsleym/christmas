@@ -70,7 +70,7 @@ export default function Home() {
           </Center>
         ) : (
           <>
-            {!isDecember ? (
+            {isDecember ? (
               <Center>
                 <Box maxW="4xl" pt={[2, 8, 16, 24]} px={[2, 8, 16, 24]} mb={24}>
                   {daysArray && (
